@@ -16,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-text font-medium font-roboto">
-        <div className="">
+        <div className="text-left">
             <Header />
-            <main className="content min-h-screen flex flex-col items-center justify-top p-6">
+            <main className="content py-8 min-h-screen flex flex-col items-center justify-top p-6">
             {children}
             </main>
         </div>

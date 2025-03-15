@@ -6,7 +6,7 @@
   --color-border: #1d202a;
   --color-accent: #d271ff;
   --color-accent-hover: #d98dfc;
-  --color-text: #87888b;
+  --color-text: #bbbbbb;
   --color-text-hover: #ffffff;
 }
 
@@ -24,4 +24,14 @@
 .content {
   max-width: 1500;
   margin: 0 auto;
+}
+
+a {
+  color: #4cc45c;
+  font-weight: 800;
+}
+
+a:hover {
+  color: #a5ffb1;
+  font-weight: 800;
 }

@@ -16,7 +16,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ url, Icon, alt }) => {
         <Link 
             href={url} target="_blank" 
             aria-label={alt} 
-            className="font-bold text-2xl hover:text-text-hover">
+            className="text-2xl text-text hover:text-text-hover">
             <Icon />
         </Link>
     )
