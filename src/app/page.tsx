@@ -8,7 +8,7 @@ export default function Home() {
 			</div>
 			<div className="py-2">
 				<p>Hey, I am Antony Kotsampaseris, software engineer and theoretical phycisist.</p>
-				<p>Check out <Link href={'/about'}>my story</Link>, it's pretty fun.</p>
+				<p>Check out <Link href={'/about'}>my story</Link>, its pretty fun.</p>
 			</div>
 			<div className="py-2">
 				<p>If you catch me daydreaming, I am most likely thinking about <span className="font-bold text-white">physics, software, crypto, and politics</span>.</p>
