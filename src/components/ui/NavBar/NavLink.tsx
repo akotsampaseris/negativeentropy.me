@@ -11,7 +11,7 @@ const NavLink: React.FC<NavLinkProps> = ({ url, title }) => {
     return (
         <Link 
             href={url}
-            className="font-bold text-lg hover:text-green-300 focus:text-green-400" >
+            className="hover:text-text-hover">
             {title}
         </Link>
     )

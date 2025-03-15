@@ -15,13 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-
-        <main className="min-h-screen flex flex-col items-center justify-top p-6">
-          {children}
-        </main>
-
+      <body className="bg-background text-text font-medium font-roboto">
+        <div className="">
+            <Header />
+            <main className="content min-h-screen flex flex-col items-center justify-top p-6">
+            {children}
+            </main>
+        </div>
       </body>
     </html>
   );

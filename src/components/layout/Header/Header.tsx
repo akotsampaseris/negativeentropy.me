@@ -4,11 +4,13 @@ import SocialBar from "../../ui/SocialBar/SocialBar"
 
 const Header = () => {
     return (
-        <header className="sticky top-0 mx-auto flex items-center justify-between p-6 lg:px-8">
-            <Logo withText={true} />
-            <div className="flex items-center justify-between p-6 lg:px-8">
-                <NavBar />
-                <SocialBar />
+        <header className="sticky top-0 bg-background py-4 px-6 lg:px-8">
+            <div className="flex justify-between items-center">
+                <Logo />
+                <div className="flex justify-between">
+                    <NavBar />
+                    <SocialBar />
+                </div>
             </div>
         </header>
     )

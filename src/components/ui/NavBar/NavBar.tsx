@@ -6,10 +6,10 @@ import NavLink from "./NavLink";
 const NavBar: React.FC = () => {
     
     return (
-        <nav className="flex w-fit items-center justify-around p-6 lg:px-8 gap-x-8">
-            <NavLink url="/" title="Home"/>
-            <NavLink url="/about-me" title="About Me"/>
+        <nav className="flex w-fit items-center justify-around px-2 lg:px-4 gap-x-4">
+            <NavLink url="/about" title="About"/>
             <NavLink url="/blog" title="Blog"/>
+            <NavLink url="/projects" title="Projects"/>
         </nav>
     )
 }
