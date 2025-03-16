@@ -15,3 +15,14 @@ A personal website built with **Next.js** and **TailwindCSS**, styled for perfor
 - **DNS**: Self-hosted [BIND](https://www.isc.org/bind/)
 
 ---
+
+## 🚀 CI/CD with GitHub Actions
+
+This project uses **GitHub Actions** to deploy automatically on every push to the `main` branch.
+
+### 🔧 Deployment Pipeline
+
+- Triggers on push to `main`
+- SSHes into the VPS using a secure deploy key
+- Pulls latest code
+- Rebuilds and restarts Docker containers via `docker-compose`
