@@ -9,7 +9,7 @@ const NavBar: React.FC = () => {
         <nav className="flex w-fit items-center justify-around px-2 lg:px-4 gap-x-4">
             <NavLink url="/about" title="About"/>
             <NavLink url="/blog" title="Blog"/>
-            <NavLink url="/projects" title="Projects"/>
+            <NavLink url="/photos" title="Photos"/>
         </nav>
     )
 }

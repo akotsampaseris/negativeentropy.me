@@ -2,6 +2,7 @@ import "@/src/styles/globals.css";
 import type { Metadata } from "next";
 
 import Header from "../components/layout/Header/Header";
+import Footer from "../components/layout/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "negativeentropy.me",
@@ -18,9 +19,10 @@ export default function RootLayout({
       <body className="bg-background text-text font-medium font-roboto">
         <div className="text-left">
             <Header />
-            <main className="content py-8 min-h-screen flex flex-col items-center justify-top p-6">
+            <main className="content py-8 flex flex-col items-center justify-top p-6">
             {children}
             </main>
+            <Footer />
         </div>
       </body>
     </html>
