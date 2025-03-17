@@ -9,7 +9,7 @@ interface SocialBarProps {
 
 const SocialBar: React.FC<SocialBarProps> = ( {withTitle} ) => {
     return (
-        <div className="flex w-fit items-center justify-around gap-x-4">
+        <div className="flex flex-wrap w-fit items-center gap-4">
             <SocialLink url="https://github.com/akotsampaseris" Icon={RiGithubLine} title={"Github"} withTitle={withTitle} />
             <SocialLink url="https://linkedin.com/in/akotsampaseris" Icon={RiLinkedinBoxFill} title={"LinkedIn"} withTitle={withTitle} />
             <SocialLink url="https://instagram.com/negativeentropy_" Icon={RiInstagramLine} title={"Instagram"} withTitle={withTitle} />
