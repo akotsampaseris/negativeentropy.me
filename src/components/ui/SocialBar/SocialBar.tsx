@@ -3,13 +3,17 @@ import { RiGithubLine, RiInstagramLine, RiLinkedinBoxFill, RiBlueskyLine } from 
 
 import SocialLink from "./SocialLink";
 
-const SocialBar: React.FC = () => {
+interface SocialBarProps {
+    withTitle?: boolean;
+}
+
+const SocialBar: React.FC<SocialBarProps> = ( {withTitle} ) => {
     return (
-        <div className="flex w-fit items-center justify-around px-2 lg:px-4 gap-x-4">
-            <SocialLink url="https://github.com/akotsampaseris" Icon={RiGithubLine} alt={"Github Profile"}/>
-            <SocialLink url="https://linkedin.com/in/akotsampaseris" Icon={RiLinkedinBoxFill} alt={"LinkedIn Profile"}/>
-            <SocialLink url="https://instagram.com/negativeentropy_" Icon={RiInstagramLine} alt={"Instagram Profile"}/>
-            <SocialLink url="https://bsky.app/profile/thenegativeentropy.bsky.social" Icon={RiBlueskyLine} alt={"BlueSky Profile"}/>
+        <div className="flex w-fit items-center justify-around gap-x-4">
+            <SocialLink url="https://github.com/akotsampaseris" Icon={RiGithubLine} title={"Github"} withTitle={withTitle} />
+            <SocialLink url="https://linkedin.com/in/akotsampaseris" Icon={RiLinkedinBoxFill} title={"LinkedIn"} withTitle={withTitle} />
+            <SocialLink url="https://instagram.com/negativeentropy_" Icon={RiInstagramLine} title={"Instagram"} withTitle={withTitle} />
+            <SocialLink url="https://bsky.app/profile/negativeentropy.me" Icon={RiBlueskyLine} title={"BlueSky"} withTitle={withTitle} />
         </div>
     )
 }

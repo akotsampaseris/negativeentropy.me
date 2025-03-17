@@ -7,17 +7,21 @@ import { CustomIconType } from "@/src/types/icon";
 interface SocialLinkProps {
     url: string;
     Icon: CustomIconType;
-    alt?: string;
+    title?: string;
+    withTitle?: boolean;
 }
 
-const SocialLink: React.FC<SocialLinkProps> = ({ url, Icon, alt }) => {
+const SocialLink: React.FC<SocialLinkProps> = ({ url, Icon, title, withTitle }) => {
     
     return (
         <Link 
             href={url} target="_blank" 
-            aria-label={alt} 
-            className="text-2xl text-text hover:text-text-hover">
-            <Icon />
+            aria-label={title} 
+            className="text-text hover:text-text-hover flex flex-wrap gap-1">
+            <Icon className="text-2xl" />
+            {withTitle &&
+            <span>{title}</span>
+            }
         </Link>
     )
 }
