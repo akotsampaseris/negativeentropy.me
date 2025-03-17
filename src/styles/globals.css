@@ -36,3 +36,8 @@ a:hover {
   color: #a5ffb1;
   font-weight: 800;
 }
+
+strong {
+  color: #fff;
+  font-weight: 900;
+}

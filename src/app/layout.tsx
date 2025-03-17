@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="bg-background text-text font-medium font-roboto">
         <div className="text-left">
             <Header />
-            <main className="content py-8 flex flex-col items-center justify-top p-6">
+            <main className="content px-8 py-4">
             {children}
             </main>
             <Footer />
