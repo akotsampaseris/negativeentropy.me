@@ -1,13 +1,14 @@
 import Link from "next/link";
 
+import PageTitle from "../components/ui/Page/PageTitle";
+import SectionHeader from "../components/ui/Page/SectionHeader";
 import SocialBar from "../components/ui/SocialBar/SocialBar";
+import { FrequentlyAskedQuestions } from "../components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 
 export default function HomePage() {
 	return (
 		<div className="w-fit">
-			<div className="py-4">
-				<h1 className="text-5xl font-bold text-white">Antony K.</h1>
-			</div>
+			<PageTitle titleText="Antony K." />
 			<div className="py-2">
 				<p>Hey, I am Antony Kotsampaseris, <strong>software engineer</strong> and <strong>theoretical phycisist</strong>. Check out <Link href={'/about'}>my full story</Link>, it{"'"}s pretty fun.</p>
 			</div>
@@ -17,7 +18,10 @@ export default function HomePage() {
 			<div className="py-2 space-y-4">
 				<p>You can find me on the following apps or email me at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.</p>
 				<SocialBar withTitle={true} />
-				<p></p>
+			</div>
+			<div className="py-2">
+				<SectionHeader headerText="Frequently Asked Questions" />
+				<FrequentlyAskedQuestions />
 			</div>
 		</div>
 	);
