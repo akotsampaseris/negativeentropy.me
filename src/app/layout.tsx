@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
 import ParticleContainer from "../components/ui/Particles/ParticleContainer";
-import { defaultMetadata } from "../data/metadata";
+import { defaultMetadata } from "../assets/metadata";
 
 export const metadata: Metadata = defaultMetadata;
 

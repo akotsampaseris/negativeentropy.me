@@ -8,7 +8,7 @@ import {
 } from "@tsparticles/engine";
 import { loadFull } from "tsparticles"; 
 
-import { particlesConfig } from "./particles";
+import { particlesConfig } from "@/src/assets/particles";
 
 const ParticleContainer = () => {
   const [init, setInit] = useState(false);

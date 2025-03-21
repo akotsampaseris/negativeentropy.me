@@ -3,7 +3,7 @@ import React from "react";
 import { Accordion } from "../../ui/Accordion/Accordion";
 import { AccordionItemType } from "@/src/types/accordionItem";
 import { FrequentlyAskedQuestionType } from "@/src/types/frequentlyAskedQuestion";
-import { frequentlyAskedQuestions } from "@/src/data/frequentlyAskedQuestions";
+import { frequentlyAskedQuestions } from "@/src/assets/frequentlyAskedQuestions";
 
 
 const faqToAccordionItem = (faq: FrequentlyAskedQuestionType): AccordionItemType => ({
