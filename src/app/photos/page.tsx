@@ -1,7 +1,11 @@
-export default function PhotosPage() {
+import PageTitle from "@/src/components/ui/Page/PageTitle";
+
+export default async function PhotosPage() {
+
 	return (
 		<div>
-			<p>Photos</p>
+			<PageTitle titleText="Photos" />
+			<p>No photos yet.</p>
 		</div>
 	);
 }

@@ -6,7 +6,8 @@ A personal website built with **Next.js** and **TailwindCSS**, styled for perfor
 
 ## 🛠 Tech Stack
 
-- **Frontend**: [Next.js](https://nextjs.org/) (with SSR)
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **Blog**: [Payload CMS](https://payloadcms.com/)
 - **Package Manager**: [pnpm](https://pnpm.io/)
 - **Containerization**: [Docker](https://www.docker.com/)
 - **Orchestration**: [Docker Compose](https://docs.docker.com/compose/)

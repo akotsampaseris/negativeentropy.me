@@ -1,7 +1,11 @@
-export default function BlogPage() {
+import PageTitle from "@/src/components/ui/Page/PageTitle";
+
+export default async function BlogPage() {
+
 	return (
 		<div>
-			<p>Blog</p>
+			<PageTitle titleText="Blog" />
+			<p>No posts yet.</p>
 		</div>
 	);
 }
