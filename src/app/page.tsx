@@ -7,24 +7,8 @@ import SocialBar from "../components/ui/SocialBar/SocialBar";
 import { FrequentlyAskedQuestions } from "../components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 
 export const metadata: Metadata = {
-	title: "Antony Kotsampaseris | negativeentropy.me",
-	description: "Explore the world of software, blockchain, crypto, and physics through the insights of Antony Kotsampaseris. Join the conversation about cutting-edge topics in science and technology.",
-	openGraph: {
-		title: "Antony Kotsampaseris | negativeentropy.me",
-		description: "Explore the world of software, blockchain, crypto, and physics through the insights of Antony Kotsampaseris. Join the conversation about cutting-edge topics in science and technology.",
-		url: "https://negativeentropy.me",
-		siteName: "negativeentropy.me",
-		images: [
-			{
-				url: "https://negativeentropy.me/symbol_original.png",
-				width: 800,
-				height: 800,
-			}
-		],
-		locale: "en_US",
-		type: "website"
-	}
-  };
+	title: "Antony Kotsampaseris"
+};
 
 export default function HomePage() {
 	return (

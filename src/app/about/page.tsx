@@ -1,8 +1,17 @@
 import { HiCalendar, HiFlag, HiLocationMarker } from "react-icons/hi";
+
+import { Metadata } from "next";
 import Link from "next/link";
 
 import PageTitle from "@/src/components/ui/Page/PageTitle";
 import SectionHeader from "@/src/components/ui/Page/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "About me",
+  openGraph: {
+    
+  }
+}
 
 export default function AboutPage() {
   return (

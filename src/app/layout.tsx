@@ -4,11 +4,9 @@ import type { Metadata } from "next";
 import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
 import ParticleContainer from "../components/ui/Particles/ParticleContainer";
+import { defaultMetadata } from "../data/metadata";
 
-export const metadata: Metadata = {
-  title: "Antony Kotsampaseris | negativeentropy.me",
-  description: "Explore the world of software, blockchain, crypto, and physics through the insights of Antony Kotsampaseris. Join the conversation about cutting-edge topics in science and technology.",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
