@@ -36,10 +36,10 @@ export const particlesConfig = {
   },
   particles: {
     color: {
-      value: "#333",
+      value: "#555",
     },
     links: {
-      color: "#222",
+      color: "#444",
       distance: 150,
       enable: true,
       opacity: 0.7,
