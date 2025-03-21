@@ -7,10 +7,7 @@ import PageTitle from "@/src/components/ui/Page/PageTitle";
 import SectionHeader from "@/src/components/ui/Page/SectionHeader";
 
 export const metadata: Metadata = {
-  title: "About me",
-  openGraph: {
-    
-  }
+  title: "About me"
 }
 
 export default function AboutPage() {
