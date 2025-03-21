@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
+import ParticleContainer from "../components/ui/Particles/ParticleContainer";
 
 export const metadata: Metadata = {
   title: "negativeentropy.me",
@@ -17,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-text font-medium font-roboto">
-        <div className="text-left">
+        <ParticleContainer />
+        <div className="z-10 text-left">
             <Header />
             <main className="content px-8 py-4">
             {children}

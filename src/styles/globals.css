@@ -3,7 +3,7 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: #050505;
+  --color-background: #000;
   --color-border: #1d202a;
   --color-accent: #d271ff;
   --color-accent-hover: #d98dfc;
