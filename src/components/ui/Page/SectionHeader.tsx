@@ -8,9 +8,7 @@ interface SectionHeaderProps {
 const SectionHeader: React.FC<SectionHeaderProps> = ({ headerText }) => {
     return (
         <div className="py-2">
-            <h2 className="text-2xl font-semibold text-white underline underline-offset-4 decoration-gray-600">
-                {headerText}
-            </h2>
+            <h3>{headerText}</h3>
         </div>
     )
 }

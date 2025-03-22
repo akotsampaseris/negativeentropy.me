@@ -8,9 +8,7 @@ interface PageTitleProps {
 const PageTitle: React.FC<PageTitleProps> = ({ titleText }) => {
     return (
         <div className="py-4">
-			<h1 className="text-5xl font-bold text-white">
-                {titleText}
-            </h1>
+			<h1>{titleText}</h1>
 		</div>
     )
 }

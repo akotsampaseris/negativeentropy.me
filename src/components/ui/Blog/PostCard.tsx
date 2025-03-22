@@ -1,13 +1,21 @@
 import React from "react";
+import Link from "next/link";
 
 interface PostCardProps {
+    id: number,
     title: string,
     description: string,
     category: string,
     publishedAt: string,
 }
 
-const PostCard: React.FC<PostCardProps>= ({ title, category, description, publishedAt }) => {
+const PostCard: React.FC<PostCardProps>= ({ 
+    id,
+    title, 
+    category, 
+    description, 
+    publishedAt 
+}) => {
     const descriptionCutoffLimitChars: number = 180;
 
     return (
@@ -21,9 +29,11 @@ const PostCard: React.FC<PostCardProps>= ({ title, category, description, publis
                 <p className="text-sm text-accent">{publishedAt}</p>
             </div>
             <div className="space-y-2">
-                <h2 className="text-2xl font-bold text-white">
-                    {title}
-                </h2>
+                <Link href={`/blog/${id}`}>
+                    <h2 className="text-2xl font-bold text-white">
+                        {title}
+                    </h2>
+                </Link>
                 <div className="text-base">
                     {description?.length > descriptionCutoffLimitChars ?
                     <p>{description?.slice(0, descriptionCutoffLimitChars)}...</p>
