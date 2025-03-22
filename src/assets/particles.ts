@@ -26,10 +26,10 @@ export const particlesConfig = {
     },
     modes: {
       push: {
-        quantity: 4,
+        quantity: 1,
       },
       repulse: {
-        distance: 200,
+        distance: 100,
         duration: 0.4,
       },
     },
@@ -39,7 +39,7 @@ export const particlesConfig = {
       value: "#555",
     },
     links: {
-      color: "#444",
+      color: "#222",
       distance: 150,
       enable: true,
       opacity: 0.1,
