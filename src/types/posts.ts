@@ -1,5 +1,9 @@
 export type PostType = {
-    title: string;
-    body: string;
     id: number;
+    title: string;
+    description?: string;
+    category?: string;
+    body?: string;
+    createdAt: Date;
+    updatedAt: Date;
 }

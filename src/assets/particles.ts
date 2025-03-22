@@ -17,7 +17,7 @@ export const particlesConfig = {
     events: {
       onClick: {
         enable: true,
-        mode: "bubble",
+        mode: "push",
       },
       onHover: {
         enable: true,
@@ -42,8 +42,8 @@ export const particlesConfig = {
       color: "#444",
       distance: 150,
       enable: true,
-      opacity: 0.7,
-      width: 1,
+      opacity: 0.1,
+      width: 5,
     },
     move: {
       direction: MoveDirection.none,
@@ -59,16 +59,16 @@ export const particlesConfig = {
       density: {
         enable: true,
       },
-      value: 200,
+      value: 100,
     },
     opacity: {
-      value: 0.7,
+      value: 0.5,
     },
     shape: {
       type: "circle",
     },
     size: {
-      value: { min: 1, max: 3 },
+      value: { min: 1, max: 2 },
     },
   },
   detectRetina: true,
