@@ -2,7 +2,8 @@
 
 import React from "react";
 import useSWR from "swr";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { fetcher } from "@/src/utils/apiHelpers";
 import { dateFormatter } from "@/src/utils/formatter";
@@ -27,14 +28,16 @@ const BlogPost: React.FC<BlogPostProps> = ({ postID }) => {
 
 	return (
 		<div className="space-y-4">
-            <div className="space-y-1">
+            <div>
 				<h1>{post.title}</h1>
 				<span className="text-sm text-accent">
 					{dateFormatter(post.createdAt)}
 				</span>
 			</div>
 			<div>
-				<RichText data={post.body} className="space-y-4" />
+				<Markdown remarkPlugins={[remarkGfm]}>
+					{post.body}
+				</Markdown>
 			</div>
 		</div>
 	);

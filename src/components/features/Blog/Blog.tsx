@@ -21,8 +21,6 @@ const Blog: React.FC = () => {
 
     if (!posts.length) return <div>No posts yet.</div>
 
-    const lorem: string = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur dolor eaque officia consectetur deleniti earum aperiam consequatur sit possimus adipisci. Fuga, eum rem omnis laboriosam dolorum voluptatibus nisi minima ratione."
-
 	return (
 		<div className="divide-y">
 			{posts.map((post: PostType)=> (
@@ -30,8 +28,8 @@ const Blog: React.FC = () => {
                     key={post.id} 
                     id={post.id}
                     title={post.title}
-                    category={"Crypto"}
-                    description={lorem}
+                    category={post.category?.name}
+                    description={post.description}
                     publishedAt={dateFormatter(post.createdAt)} />
             ))}
 		</div>

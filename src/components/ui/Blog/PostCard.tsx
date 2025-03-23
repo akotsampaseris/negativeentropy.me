@@ -4,8 +4,8 @@ import Link from "next/link";
 interface PostCardProps {
     id: number,
     title: string,
-    description: string,
-    category: string,
+    description?: string,
+    category?: string,
     publishedAt: string,
 }
 
@@ -35,7 +35,7 @@ const PostCard: React.FC<PostCardProps>= ({
                     </h2>
                 </Link>
                 <div className="text-base">
-                    {description?.length > descriptionCutoffLimitChars ?
+                    { !!description && description?.length > descriptionCutoffLimitChars ?
                     <p>{description?.slice(0, descriptionCutoffLimitChars)}...</p>
                     :
                     <p>{description}</p>

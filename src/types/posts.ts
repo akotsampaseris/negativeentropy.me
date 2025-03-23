@@ -1,11 +1,14 @@
-import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+export type PostCategory = {
+    id: number;
+    name: string;
+}
 
 export type PostType = {
     id: number;
     title: string;
     description?: string;
-    category?: string;
-    body: SerializedEditorState;
+    category?: PostCategory;
+    body: string;
     createdAt: Date;
     updatedAt: Date;
 }
