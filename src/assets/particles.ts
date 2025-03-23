@@ -36,14 +36,14 @@ export const particlesConfig = {
   },
   particles: {
     color: {
-      value: "#555",
+      value: "#44c455",
     },
     links: {
-      color: "#222",
+      color: "#aaffbb",
       distance: 150,
       enable: true,
       opacity: 0.1,
-      width: 5,
+      width: 1,
     },
     move: {
       direction: MoveDirection.none,
@@ -62,7 +62,7 @@ export const particlesConfig = {
       value: 100,
     },
     opacity: {
-      value: 0.5,
+      value: 0.2,
     },
     shape: {
       type: "circle",

@@ -19,7 +19,7 @@ export default function RootLayout({
         <ParticleContainer />
         <div className="z-10 text-left">
             <Header />
-            <main className="content px-8 py-4 rounded-lg bg-background">
+            <main className="content px-8 py-4 rounded-lg bg-background/80">
             {children}
             </main>
             <Footer />
