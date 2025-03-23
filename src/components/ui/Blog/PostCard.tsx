@@ -29,7 +29,7 @@ const PostCard: React.FC<PostCardProps>= ({
                 <p className="text-sm text-accent">{publishedAt}</p>
             </div>
             <div className="space-y-2">
-                <Link href={`/blog/${id}`}>
+                <Link href={`/blog/posts/${id}`}>
                     <h2 className="text-2xl font-bold text-white">
                         {title}
                     </h2>
