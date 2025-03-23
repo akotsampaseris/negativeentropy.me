@@ -10,11 +10,11 @@ import { dateFormatter } from "@/src/utils/formatter";
 import { PostType } from "@/src/types/posts";
 
 interface BlogPostProps {
-    postId: number,
+    postID: number,
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ postId }) => {
-	const { data, error } = useSWR(`/api/posts/${postId}`, fetcher, {
+const BlogPost: React.FC<BlogPostProps> = ({ postID }) => {
+	const { data, error } = useSWR(`/api/posts/${postID}`, fetcher, {
 		refreshInterval: 1000 * 60 * 10, // refetch every 10 minutes
 	})
 
