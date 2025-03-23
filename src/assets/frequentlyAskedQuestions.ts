@@ -3,11 +3,11 @@ import { FrequentlyAskedQuestionType } from "../types/frequentlyAskedQuestion";
 export const frequentlyAskedQuestions: FrequentlyAskedQuestionType[] = [
     {
       question: "Who do you think you are?",
-      answer: "I am Antony. I have studied <strong>Theoretical Physics</strong> and I have been working as a <strong>Software Engineer</strong> for a few years. I like to solve problems and think about stuff.",
+      answer: "I am Antony. I have studied <strong>Theoretical Physics</strong> and I have been working as a <strong>Software Engineer</strong> for a few years. I like to solve problems and to think about stuff.",
     },
     {
       question: "What's up?",
-      answer: "I am currently working with <strong>Rust</strong> and <strong>Solidity</strong>. The plan is to contribute to <strong>blockchain</strong> and/or <strong>Web3</strong> projects.",
+      answer: "I am currently working with <strong>Rust</strong> and <strong>Solidity</strong>. The plan is to contribute to <strong>blockchain</strong> and <strong>Web3</strong> projects.",
     },
     {
       question: "Are you sure?",
