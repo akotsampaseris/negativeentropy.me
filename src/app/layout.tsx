@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Header from "../components/layout/Header/Header";
 import Footer from "../components/layout/Footer/Footer";
 import ParticleContainer from "../components/ui/Particles/ParticleContainer";
+import Breadcrumbs from "../components/ui/Breadcrumbs/Breadcrumbs";
 import { defaultMetadata } from "../assets/metadata";
 
 export const metadata: Metadata = defaultMetadata;
@@ -20,6 +21,7 @@ export default function RootLayout({
         <div className="z-10 text-left">
             <Header />
             <main className="content px-8 py-4 rounded-lg bg-background/80">
+            <Breadcrumbs />
             {children}
             </main>
             <Footer />
