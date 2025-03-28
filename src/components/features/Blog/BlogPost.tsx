@@ -2,8 +2,8 @@
 
 import React from "react";
 import useSWR from "swr";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import Link from "next/link";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import { fetcher } from "@/src/utils/apiHelpers";
 import { dateFormatter } from "@/src/utils/formatter";
@@ -28,17 +28,21 @@ const BlogPost: React.FC<BlogPostProps> = ({ postID }) => {
 
 	return (
 		<div className="space-y-4">
-            <div>
+            <div className="space-y-2">
 				<h1>{post.title}</h1>
-				<span className="text-sm text-accent">
-					{dateFormatter(post.createdAt)}
-				</span>
+				<div className="flex items-center gap-2 text-sm font-semibold">
+					<span>
+						{dateFormatter(post.createdAt)}
+					</span>
+					<span>
+						|
+					</span>
+					<Link href={`/blog?category=${post.category?.name}`}>
+						{post.category?.name}
+					</Link>
+				</div>
 			</div>
-			<div>
-				<Markdown remarkPlugins={[remarkGfm]}>
-					{post.body}
-				</Markdown>
-			</div>
+			<RichText data={post.body} />
 		</div>
 	);
 }
