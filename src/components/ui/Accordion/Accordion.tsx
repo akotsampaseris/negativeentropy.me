@@ -40,11 +40,12 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
                 type="button"
                 onClick={toggleAccordionItem}
                 id={`#accordion-title-${index}`}
-                className="flex items-center justify-between w-full py-5 rtl:text-right border-b border-gray-700 gap-4 text-lg"
+                className="w-full py-5 rtl:text-right border-b border-gray-700"
                 data-accordion-index={index}
                 aria-expanded="true"
                 aria-controls={`#accordion-content-${index}`}
             >
+              <div className="flex items-center justify-between gap-4 pointer-events-none">
                 <div className="flex gap-2">
                 {item.icon ? <item.icon /> : ""}
                 <span>{item.title}</span>
@@ -66,6 +67,7 @@ export const Accordion: React.FC<AccordionProps> = ({ items }) => {
                     d="M9 5 5 1 1 5"
                 />
                 </svg>
+              </div>
             </button>
           <div
             id={`#accordion-content-${index}`}
