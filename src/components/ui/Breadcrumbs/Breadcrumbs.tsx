@@ -18,13 +18,13 @@ const Breadcrumbs: React.FC = () => {
       <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <BreadcrumbsItem title={"home"} url={"/"} />        
         {items.map((item, index) => (
-          <>
-          <BreadcrumbsSeparator />
-          {index < items.length - 1 ? 
-          <BreadcrumbsItem title={item} url={`/${item}`} />  :
-          <BreadcrumbsItem title={item} />  
-          }
-          </>
+          <React.Fragment key={index}>
+            <BreadcrumbsSeparator />
+            {index < items.length - 1 ? 
+            <BreadcrumbsItem title={item} url={`/${item}`} />  :
+            <BreadcrumbsItem title={item} />  
+            }
+          </React.Fragment>
         ))}
       </ol>
     </nav>
