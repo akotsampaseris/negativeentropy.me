@@ -28,18 +28,14 @@ const BlogPost: React.FC<BlogPostProps> = ({ postID }) => {
 
 	return (
 		<div className="space-y-4">
-            <div className="space-y-2">
+            <div>
 				<h1>{post.title}</h1>
 				<div className="flex items-center gap-2 text-sm font-semibold">
-					<span>
-						{dateFormatter(post.createdAt)}
-					</span>
-					<span>
-						|
-					</span>
 					<Link href={`/blog?category=${post.category?.name}`}>
 						{post.category?.name}
 					</Link>
+					<span>|</span>
+					<span>{dateFormatter(post.createdAt)}</span>
 				</div>
 			</div>
 			<RichText data={post.body} />

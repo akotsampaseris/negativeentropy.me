@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import PageTitle from "../components/ui/Page/PageTitle";
-import SectionHeader from "../components/ui/Page/SectionHeader";
 import SocialBar from "../components/ui/SocialBar/SocialBar";
 import { FrequentlyAskedQuestions } from "../components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 
@@ -13,8 +11,8 @@ export const metadata: Metadata = {
 export default function HomePage() {
 	return (
 		<div className="w-fit space-y-4">
-			<PageTitle titleText="Antony Kotsampaseris" />
 			<div>
+				<h1 className="py-2">Antony Kotsampaseris</h1>
 				<p>Hey, I am Antony Kotsampaseris, <strong>software engineer</strong> and <strong>theoretical phycisist</strong>. Check out <Link href={'/about'}>my full story</Link>, it{"'"}s pretty fun.</p>
 			</div>
 			<div>
@@ -26,7 +24,7 @@ export default function HomePage() {
 				<p>or send me an e-mail at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.</p>
 			</div>
 			<div>
-				<SectionHeader headerText="Frequently Asked Questions" />
+				<h3>Frequently Asked Questions</h3>
 				<FrequentlyAskedQuestions />
 			</div>
 		</div>

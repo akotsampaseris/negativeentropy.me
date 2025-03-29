@@ -18,11 +18,11 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-background text-text font-medium font-roboto">
         <ParticleContainer />
-        <div className="z-10 text-left">
+        <div className="z-10 text-left px-6">
             <Header />
-            <main className="content px-8 py-4 rounded-lg bg-background/80">
-            <Breadcrumbs />
-            {children}
+            <main className="content py-4 rounded-lg bg-background/50">
+              <Breadcrumbs />
+              {children}
             </main>
             <Footer />
         </div>

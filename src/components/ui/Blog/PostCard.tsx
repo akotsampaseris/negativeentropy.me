@@ -19,20 +19,14 @@ const PostCard: React.FC<PostCardProps>= ({
     const descriptionCutoffLimitChars: number = 180;
 
     return (
-        <div className="px-4 py-8 space-y-4 flex flex-col justify-around">
-            <div className="flex justify-between items-center">
-                <div className="h-5 w-fit px-2 flex items-center bg-accent/90 hover:bg-accent-hover rounded">
-                    <p className="font-semibold text-white text-xs">
-                        {category}
-                    </p>
-                </div>
-                <p className="text-sm text-accent">{publishedAt}</p>
+        <div className="py-4 flex flex-col justify-around">
+            <div className="flex justify-between items-center text-sm">
+                <Link href={`/blog?category=${category}`}>{category}</Link>
+                <p>{publishedAt}</p>
             </div>
             <div className="space-y-2">
                 <Link href={`/blog/${id}`}>
-                    <h2 className="text-2xl font-bold text-white">
-                        {title}
-                    </h2>
+                    <h3>{title}</h3>
                 </Link>
                 <div className="text-base">
                     { !!description && description?.length > descriptionCutoffLimitChars ?
