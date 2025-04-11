@@ -8,8 +8,9 @@ export type PostCategory = {
 export type PostType = {
     id: number;
     title: string;
+    slug: string;
     description?: string;
-    category?: PostCategory;
+    category: PostCategory;
     body: SerializedEditorState;
     createdAt: Date;
     updatedAt: Date;

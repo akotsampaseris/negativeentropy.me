@@ -1,31 +1,17 @@
 "use client"
 
 import React from "react";
-import useSWR from "swr";
 import Link from "next/link";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 
-import { fetcher } from "@/src/utils/apiHelpers";
+import { PostType } from "@/src/types/posts";
 import { dateFormatter } from "@/src/utils/formatter";
 
-import { PostType } from "@/src/types/posts";
-
 interface BlogPostProps {
-    postID: number,
+    post: PostType,
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ postID }) => {
-	const { data, error } = useSWR(`/api/posts/${postID}`, fetcher, {
-		refreshInterval: 1000 * 60 * 10, // refetch every 10 minutes
-	})
-
-	console.log(data)
-
-	if (error) return <div>Something went wrong...</div>
-	if (!data) return <div>Loading...</div>
-
-    const post: PostType = data
-
+const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
 	return (
 		<div className="space-y-4">
             <div>

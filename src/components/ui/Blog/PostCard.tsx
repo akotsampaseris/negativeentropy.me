@@ -1,38 +1,31 @@
 import React from "react";
 import Link from "next/link";
 
+import { PostType } from "@/src/types/posts";
+import { dateFormatter } from "@/src/utils/formatter";
+
 interface PostCardProps {
-    id: number,
-    title: string,
-    description?: string,
-    category?: string,
-    publishedAt: string,
+    post: PostType
 }
 
-const PostCard: React.FC<PostCardProps>= ({ 
-    id,
-    title, 
-    category, 
-    description, 
-    publishedAt 
-}) => {
+const PostCard: React.FC<PostCardProps>= ({ post }) => {
     const descriptionCutoffLimitChars: number = 180;
 
     return (
         <div className="py-4 flex flex-col justify-around">
             <div className="flex justify-between items-center text-sm">
-                <Link href={`/blog?category=${category}`}>{category}</Link>
-                <p>{publishedAt}</p>
+                <Link href={`/blog?category=${post.category?.name}`}>{post.category?.name}</Link>
+                <p>{dateFormatter(post.createdAt)}</p>
             </div>
             <div className="space-y-2">
-                <Link href={`/blog/${id}`}>
-                    <h3>{title}</h3>
+                <Link href={`/blog/${post.slug}`}>
+                    <h3>{post.title}</h3>
                 </Link>
                 <div className="text-base">
-                    { !!description && description?.length > descriptionCutoffLimitChars ?
-                    <p>{description?.slice(0, descriptionCutoffLimitChars)}...</p>
+                    { !!post.description && post.description?.length > descriptionCutoffLimitChars ?
+                    <p>{post.description?.slice(0, descriptionCutoffLimitChars)}...</p>
                     :
-                    <p>{description}</p>
+                    <p>{post.description}</p>
                     }
                 </div>
             </div>
