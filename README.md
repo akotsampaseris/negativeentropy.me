@@ -14,6 +14,7 @@ A personal website built with **Next.js** and **TailwindCSS**, styled for perfor
 - **Reverse Proxy**: [Nginx](https://nginx.org/)
 - **SSL/TLS**: [Certbot (Let's Encrypt)](https://certbot.eff.org/)
 - **DNS**: Self-hosted [BIND](https://www.isc.org/bind/)
+- **Analytics**: [Umami](https://github.com/umami-software/umami)
 
 ---
 
