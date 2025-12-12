@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 async function getPosts() {
 	const res = await fetch(`https://cms.negativeentropy.me/api/posts`,{
-		cache: 'force-cache'
+		next: { revalidate: 60 }
 	})
 	const data = await res.json()
 	const posts: PostType[] = data.docs
