@@ -6,7 +6,7 @@ import { PostType } from "@/src/types/posts";
 
 
 async function getPost(slug: string) {
-	const res = await fetch(`https://cms.negativeentropy.me/api/posts?slug=${slug}`,{
+	const res = await fetch(`https://cms.negativeentropy.me/api/posts?where[slug][equals]=${slug}`,{
 		cache: 'force-cache'
 	})
 	const data = await res.json()
