@@ -12,7 +12,5 @@ export type PostType = {
   description?: string;
   category: PostCategory;
   body: SerializedEditorState;
-  createdAt: Date;
-  updatedAt: Date;
   publishedAt: Date;
 };
