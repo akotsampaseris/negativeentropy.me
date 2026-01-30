@@ -7,13 +7,34 @@ export const metadata: Metadata = {
   title: "Blog",
 };
 
-async function getPosts() {
-  const res = await fetch(
-    `https://cms.negativeentropy.me/api/posts?sort=-publishedAt`,
-    {
-      next: { revalidate: 60 },
-    },
-  );
+interface PostFilters {
+  sort?: string;
+  limit?: number;
+  page?: number;
+}
+
+async function getPosts(
+  pagination: boolean = true,
+  page: number = 1,
+  postsPerPage: number = 5,
+  sortBy: string = "-publishedAt",
+) {
+  const apiUrl = process.env.CMS_API_URL;
+
+  const filters: PostFilters = {
+    sort: sortBy,
+  };
+
+  if (!!pagination) {
+    filters.page = page;
+    filters.limit = postsPerPage;
+  }
+
+  const fullPath = `${apiUrl}/posts?${Object.entries(filters)
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&")}`;
+
+  const res = await fetch(`${fullPath}`);
   const data = await res.json();
   const posts: PostType[] = data.docs;
 
@@ -21,7 +42,29 @@ async function getPosts() {
 }
 
 export default async function BlogPage() {
-  const posts: PostType[] = await getPosts();
+  const pagination = false;
+  const page = 1;
+  const postsPerPage = 5;
+  const sortBy = "-publishedAt";
+  const posts: PostType[] = await getPosts(
+    pagination,
+    page,
+    postsPerPage,
+    sortBy,
+  );
+
+  // TODO: Implement loadMore functionality
+  // const loadMore = async () => {
+  //   "use server";
+  //   const nextPage = page + 1;
+  //   const nextPosts = await getPosts(
+  //     pagination,
+  //     nextPage,
+  //     postsPerPage,
+  //     sortBy,
+  //   );
+  //   posts.push(...nextPosts);
+  // };
 
   return (
     <div>
