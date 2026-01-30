@@ -3,83 +3,80 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: #121212;
-  --color-border: #1d202a;
-  --color-accent: #4cc45c;
-  --color-accent-hover: #4cc45c;
-  --color-text: #aaa;
-  --color-text-hover: #ffffff;
+    --color-background: #121212;
+    --color-border: #1d202a;
+    --color-accent: #4cc45c;
+    --color-accent-hover: #4cc45c;
+    --color-text: #aaa;
+    --color-text-hover: #ffffff;
 }
 
 @theme {
-  --font-display: "Inter", "sans-serif";
-  --font-roboto: "Roboto", "sans-serif"; 
-  --color-background: var(--color-background);
-  --color-border: var(--color-border);
-  --color-accent: var(--color-accent);
-  --color-accent-hover: var(--color-accent-hover);
-  --color-text: var(--color-text);
-  --color-text-hover: var(--color-text-hover);
+    --font-display: "Inter", "sans-serif";
+    --font-roboto: "Roboto", "sans-serif";
+    --color-background: var(--color-background);
+    --color-border: var(--color-border);
+    --color-accent: var(--color-accent);
+    --color-accent-hover: var(--color-accent-hover);
+    --color-text: var(--color-text);
+    --color-text-hover: var(--color-text-hover);
 }
 
 .content {
-  max-width: 800;
-  margin: 0 auto;
+    max-width: 800;
+    margin: 0 auto;
 }
 
 h1 {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #fff;
-  line-height: normal;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: normal;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
 }
 
 h2 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: normal;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: normal;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
 }
 
 h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  text-decoration: underline;
-  text-decoration-color: #4a5565;
-  text-underline-offset: 4px;
-  line-height: normal;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: normal;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
 }
 
 h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ddd;
-  text-decoration: underline;
-  text-decoration-color: #4a5565;
-  text-underline-offset: 4px;
-  line-height: normal;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ddd;
+    text-decoration: underline;
+    text-decoration-color: #4a5565;
+    text-underline-offset: 4px;
+    line-height: normal;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
 }
 
 a {
-  color: #4cc45c;
-  font-weight: 800;
+    color: #4cc45c;
+    font-weight: 800;
 }
 
 a:hover {
-  color: #a5ffb1;
-  font-weight: 800;
+    color: #a5ffb1;
+    font-weight: 800;
 }
 
 strong {
-  color: #fff;
-  font-weight: 900;
+    color: #fff;
+    font-weight: 900;
 }
