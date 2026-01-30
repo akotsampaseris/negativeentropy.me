@@ -34,7 +34,7 @@ async function getPosts(
     .map(([key, value]) => `${key}=${value}`)
     .join("&")}`;
 
-  const res = await fetch(`${fullPath}`);
+  const res = await fetch(fullPath);
   const data = await res.json();
   const posts: PostType[] = data.docs;
 

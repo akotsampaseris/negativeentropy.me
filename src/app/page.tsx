@@ -3,12 +3,36 @@ import type { Metadata } from "next";
 
 import SocialBar from "../components/ui/SocialBar/SocialBar";
 import { FrequentlyAskedQuestions } from "../components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
+import LatestBlogPost from "../components/features/Blog/LatestBlogPost";
+import type { PostType } from "../types/posts";
 
 export const metadata: Metadata = {
 	title: "Antony Kotsampaseris"
 };
 
-export default function HomePage() {
+async function getLatestPost() {
+	const apiUrl = process.env.CMS_API_URL;
+
+	const filters = {
+		sort: "-publishedAt",
+		page: 1,
+		limit: 1
+	};
+
+	const fullPath = `${apiUrl}/posts?${Object.entries(filters)
+		.map(([key, value]) => `${key}=${value}`)
+		.join("&")}`;
+
+	const res = await fetch(fullPath);
+	const data = await res.json();
+	const post: PostType = data.docs[0];
+
+	return post;
+}
+
+export default async function HomePage() {
+	const post: PostType = await getLatestPost();
+	
 	return (
 		<div className="w-fit space-y-4">
 			<div>
@@ -22,6 +46,17 @@ export default function HomePage() {
 				<p>You can connect with me on these apps</p>
 				<SocialBar withTitle={true} />
 				<p>or send me an e-mail at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.</p>
+			</div>
+			<div>
+				<div className="flex gap-4 items-end">
+					<h3>Latest Post</h3>
+					<span className="text-sm">
+						<Link href={"/blog"}>View all posts</Link>
+					</span>
+				</div>
+				<div className="px-2">
+					<LatestBlogPost post={post} />
+				</div>
 			</div>
 			<div>
 				<h3>Frequently Asked Questions</h3>
