@@ -1,4 +1,4 @@
-import { RiGithubLine, RiInstagramLine, RiLinkedinBoxFill, RiBlueskyLine, RiMastodonFill } from "react-icons/ri";
+import { RiGithubLine, RiLinkedinBoxFill, RiBlueskyLine, RiMastodonFill } from "react-icons/ri";
 import { SocialLinkType } from "../types/socialLink";
 
 export const socialLinks: SocialLinkType[] = [
@@ -11,11 +11,6 @@ export const socialLinks: SocialLinkType[] = [
         title: "LinkedIn",
         url: "https://linkedin.com/in/akotsampaseris",
         icon: RiLinkedinBoxFill,
-    },
-    {
-        title: "Instagram",
-        url: "https://instagram.com/negativeentropy.me",
-        icon: RiInstagramLine,
     },
     {
         title: "Bluesky",

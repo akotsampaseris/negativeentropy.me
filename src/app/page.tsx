@@ -48,17 +48,17 @@ export default async function HomePage() {
 				<p>or send me an e-mail at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.</p>
 			</div>
 			<div>
-				<div className="flex gap-4 items-end">
+				<div className="flex-wrap gap-4 py-4">
 					<h3>Latest Post</h3>
-					<span className="text-sm">
+					<span className="text-xs">
 						<Link href={"/blog"}>View all posts</Link>
 					</span>
 				</div>
-				<div className="px-2">
+				<div className="px-2 border rounded-xl">
 					<LatestBlogPost post={post} />
 				</div>
 			</div>
-			<div>
+			<div className="py-4">
 				<h3>Frequently Asked Questions</h3>
 				<FrequentlyAskedQuestions />
 			</div>
