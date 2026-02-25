@@ -5,6 +5,7 @@ import { PostType } from "@/src/types/posts";
 
 export const metadata: Metadata = {
     title: "Blog",
+    description: "Writing on physics, blockchain, determinism, and software engineering. A glimpse into my mind.",
 };
 
 interface PostFilters {
@@ -13,12 +14,7 @@ interface PostFilters {
     page?: number;
 }
 
-async function getPosts(
-    pagination: boolean = true,
-    page: number = 1,
-    postsPerPage: number = 5,
-    sortBy: string = "-publishedAt",
-) {
+async function getPosts(pagination: boolean = true, page: number = 1, postsPerPage: number = 5, sortBy: string = "-publishedAt") {
     const apiUrl = process.env.CMS_API_URL;
 
     const filters: PostFilters = {
@@ -50,12 +46,7 @@ export default async function BlogPage() {
     const page = 1;
     const postsPerPage = 5;
     const sortBy = "-publishedAt";
-    const posts: PostType[] = await getPosts(
-        pagination,
-        page,
-        postsPerPage,
-        sortBy,
-    );
+    const posts: PostType[] = await getPosts(pagination, page, postsPerPage, sortBy);
 
     // TODO: Implement loadMore functionality
     // const loadMore = async () => {

@@ -1,4 +1,4 @@
-import { RiGithubLine, RiLinkedinBoxFill, RiBlueskyLine, RiMastodonFill } from "react-icons/ri";
+import { RiGithubLine, RiLinkedinBoxFill, RiBlueskyLine } from "react-icons/ri";
 import { SocialLinkType } from "../types/socialLink";
 
 export const socialLinks: SocialLinkType[] = [
