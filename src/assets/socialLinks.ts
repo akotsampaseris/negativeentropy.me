@@ -17,9 +17,9 @@ export const socialLinks: SocialLinkType[] = [
         url: "https://bsky.app/profile/negativeentropy.me",
         icon: RiBlueskyLine,
     },
-    {
-        title: "Mastodon",
-        url: "https://mas.to/@negativeentropy",
-        icon: RiMastodonFill,
-    },
-  ];
+    // {
+    //     title: "Mastodon",
+    //     url: "https://mas.to/@negativeentropy",
+    //     icon: RiMastodonFill,
+    // },
+];

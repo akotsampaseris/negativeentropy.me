@@ -50,11 +50,10 @@ export default async function HomePage() {
                 </p>
             </div>
             <div className="space-y-4">
-                <p>You can connect with me on these apps</p>
-                <SocialBar withTitle={true} />
                 <p>
-                    or send me an e-mail at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.
+                    You can connect with me on these apps or e-mail me at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.
                 </p>
+                <SocialBar withTitle={true} />
             </div>
             {post && (
                 <div>
