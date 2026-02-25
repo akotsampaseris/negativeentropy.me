@@ -51,7 +51,7 @@ export default async function HomePage() {
             </div>
             <div className="space-y-4">
                 <p>
-                    You can connect with me on these apps or e-mail me at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.
+                    You can connect with me on the apps below or just e-mail me at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.
                 </p>
                 <SocialBar withTitle={true} />
             </div>
