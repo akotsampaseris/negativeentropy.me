@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const ENTROPY_CHARS = "∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟⟁⟂⟃⟄⟇⟈⟉⟊⟋⟌⟍⟎⟏⟐⟑⟒⟓⟔⟕⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟";
@@ -34,50 +34,6 @@ function useGlitch(text: string, active: boolean) {
     return display;
 }
 
-const EntropyField = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        const chars = ENTROPY_CHARS.split("");
-        const fontSize = 13;
-        const cols = Math.floor(canvas.width / fontSize);
-        const drops: number[] = Array(cols)
-            .fill(0)
-            .map(() => Math.random() * -100);
-
-        const draw = () => {
-            ctx.fillStyle = "rgba(10, 10, 10, 0.08)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < drops.length; i++) {
-                const opacity = Math.random() * 0.4 + 0.05;
-                ctx.fillStyle = `rgba(74, 222, 128, ${opacity})`;
-                ctx.font = `${fontSize}px monospace`;
-                const char = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i] += 0.4;
-            }
-        };
-
-        const animation = setInterval(draw, 60);
-        return () => clearInterval(animation);
-    }, []);
-
-    return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" />;
-};
-
 export default function NotFound() {
     const [glitching, setGlitching] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -100,9 +56,6 @@ export default function NotFound() {
 
     return (
         <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-            {/* Falling entropy characters background */}
-            <EntropyField />
-
             {/* Radial glow */}
             <div
                 className="absolute inset-0 pointer-events-none"
