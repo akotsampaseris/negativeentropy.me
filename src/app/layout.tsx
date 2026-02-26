@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 
+import { roboto } from "./fonts";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
 import ParticleContainer from "@/components/ui/Particles/ParticleContainer";
@@ -32,7 +33,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             {includeAnalyticsScript()}
-            <body className="bg-background text-text font-medium font-roboto">
+            <body className={`${roboto.variable} bg-background text-text font-medium font-roboto`}>
                 <ParticleContainer />
                 <div className="z-10 text-left px-6">
                     <Header />
