@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { PostType } from "@/src/types/posts";
 import { dateFormatter } from "@/src/utils/formatter";
+import { GreenLink } from "../GreenLink/GreenLink";
 
 interface PostCardProps {
     post: PostType;
@@ -50,14 +51,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 <div className="flex items-center gap-3 text-xs font-mono">
                     {post.category?.name && (
                         <>
-                            <Link
-                                href={`/blog?category=${post.category.name}`}
-                                className="tracking-widest uppercase transition-colors duration-200"
-                                style={{ color: "#4ade8099" }}
-                                onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                                onMouseOut={(e) => (e.currentTarget.style.color = "#4ade8099")}>
-                                {post.category.name}
-                            </Link>
+                            <GreenLink href={`/blog?category=${post.category.name}`}>{post.category.name}</GreenLink>
                             <span className="text-white/10">—</span>
                         </>
                     )}

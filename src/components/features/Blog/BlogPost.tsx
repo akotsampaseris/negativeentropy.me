@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { PostType } from "@/src/types/posts";
 import { dateFormatter } from "@/src/utils/formatter";
+import { GreenLink } from "../../ui/GreenLink/GreenLink";
 
 interface BlogPostProps {
     post: PostType;
@@ -20,14 +20,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 <div className="flex items-center gap-3">
                     {post.category?.name && (
                         <>
-                            <Link
-                                href={`/blog?category=${post.category.name}`}
-                                className="text-xs font-mono tracking-widest uppercase transition-colors duration-200"
-                                style={{ color: "#4ade8099" }}
-                                onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                                onMouseOut={(e) => (e.currentTarget.style.color = "#4ade8099")}>
-                                {post.category.name}
-                            </Link>
+                            <GreenLink href={`/blog?category=${post.category.name}`}>{post.category.name}</GreenLink>
                             <span className="text-white/10">—</span>
                         </>
                     )}

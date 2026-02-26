@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+
+import { GreenLink } from "../../ui/GreenLink/GreenLink";
 import { PostType } from "@/src/types/posts";
 import PostCard from "../../ui/Blog/PostCard";
 
@@ -41,14 +42,7 @@ const LatestBlogPosts = ({ posts }: LatestBlogPostsProps) => {
 
             {/* View all */}
             <div className="group flex items-center gap-2 pt-4">
-                <Link
-                    href="/blog"
-                    className="text-xs font-mono tracking-widest uppercase transition-colors duration-200"
-                    style={{ color: "#4ade80cb" }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                    onMouseOut={(e) => (e.currentTarget.style.color = "#4ade80cb")}>
-                    View all posts
-                </Link>
+                <GreenLink href="/blog">View all posts</GreenLink>
                 <span className="text-xs transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-1" style={{ color: "#4ade80" }}>
                     ⟶
                 </span>

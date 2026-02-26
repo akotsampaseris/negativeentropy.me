@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { GreenLink } from "../components/ui/GreenLink/GreenLink";
 
 const ENTROPY_CHARS = "∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟⟁⟂⟃⟄⟇⟈⟉⟊⟋⟌⟍⟎⟏⟐⟑⟒⟓⟔⟕⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟";
 
@@ -100,37 +100,21 @@ export default function NotFound() {
 
                 {/* CTA */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-                    <Link
-                        href="/"
-                        className="group flex items-center gap-2 text-xs font-mono tracking-widest uppercase transition-colors duration-200 border-b border-dotted pb-0.5"
-                        style={{ color: "#4ade80", borderColor: "#4ade8055" }}
-                        onMouseOver={(e) => {
-                            e.currentTarget.style.color = "#86efac";
-                            e.currentTarget.style.borderColor = "#86efac";
-                        }}
-                        onMouseOut={(e) => {
-                            e.currentTarget.style.color = "#4ade80";
-                            e.currentTarget.style.borderColor = "#4ade8055";
-                        }}>
+                    <GreenLink href="/">
                         <span className="transition-transform duration-200 group-hover:-translate-x-1" style={{ color: "#4ade80" }}>
                             ⟵
                         </span>
                         Return home
-                    </Link>
+                    </GreenLink>
 
                     <span style={{ color: "#4ade8022" }} className="hidden sm:block font-mono">
                         |
                     </span>
 
-                    <Link
-                        href="/blog"
-                        className="group flex items-center gap-2 text-xs font-mono tracking-widest uppercase transition-colors duration-200"
-                        style={{ color: "#4ade8066" }}
-                        onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                        onMouseOut={(e) => (e.currentTarget.style.color = "#4ade8066")}>
+                    <GreenLink href="/blog">
                         Read the blog
                         <span className="transition-transform duration-200 group-hover:translate-x-1">⟶</span>
-                    </Link>
+                    </GreenLink>
                 </div>
             </div>
         </div>

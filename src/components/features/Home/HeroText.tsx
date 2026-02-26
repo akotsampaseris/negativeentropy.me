@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { GreenLink } from "../../ui/GreenLink/GreenLink";
 
 const ENTROPY_CHARS = "∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≈≉⟁⟂⟃⟇⟈⟉⟊⟋∫∬∭∮∯∰∱∲∳∇∆∂∃∄∅∆∇∈∉∊∋∌∍";
 
-// Segments with their bold/link metadata
 const SEGMENTS = [
     { text: "Hey, I am Antony, a ", bold: false, link: null },
     { text: "theoretical physicist", bold: true, link: null },
@@ -19,7 +18,15 @@ const SEGMENTS = [
     { text: "politics", bold: true, link: null },
     { text: ". I write about these topics ", bold: false, link: null },
     { text: "here", bold: false, link: "/blog" },
-    { text: ". I am looking for the truth no matter how difficult or uncomfortable it may be.", bold: false, link: null },
+    { text: ". I am looking for the truth no matter how difficult or uncomfortable it may be. You can follow me on ", bold: false, link: null },
+    { text: "GitHub", bold: false, link: "https://github.com/akotsampaseris" },
+    { text: ", ", bold: false, link: null },
+    { text: "LinkedIn", bold: false, link: "https://linkedin.com/in/akotsampaseris" },
+    { text: ", ", bold: false, link: null },
+    { text: "Bluesky", bold: false, link: "https://bsky.app/profile/negativeentropy.me" },
+    { text: ", or reach me at ", bold: false, link: null },
+    { text: "a.kotsampaseris@gmail.com", bold: false, link: "mailto:a.kotsampaseris@gmail.com" },
+    { text: ".", bold: false, link: null },
 ];
 
 const PLAIN_TEXT = SEGMENTS.map((s) => s.text).join("");
@@ -38,10 +45,8 @@ function useEntropyReveal(text: string, delay: number = 0) {
         const current = text.split("").map(() => ENTROPY_CHARS[Math.floor(Math.random() * ENTROPY_CHARS.length)]);
 
         const timeout = setTimeout(() => {
-            // Resolve characters left to right in waves
             let i = 0;
             const interval = setInterval(() => {
-                // Resolve a batch of chars
                 const batchSize = Math.ceil(text.length / 40);
                 for (let b = 0; b < batchSize; b++) {
                     if (i < text.length) {
@@ -50,7 +55,6 @@ function useEntropyReveal(text: string, delay: number = 0) {
                     }
                 }
 
-                // Re-scramble unresolved chars each frame
                 const next = current.map((c, idx) => {
                     if (resolved[idx]) return text[idx];
                     return ENTROPY_CHARS[Math.floor(Math.random() * ENTROPY_CHARS.length)];
@@ -75,31 +79,17 @@ function useEntropyReveal(text: string, delay: number = 0) {
 const HeroText: React.FC = () => {
     const { displayed, done } = useEntropyReveal(PLAIN_TEXT, 200);
 
-    // Map displayed flat string back onto segments
     let cursor = 0;
     const renderedSegments = SEGMENTS.map((seg, si) => {
         const slice = displayed.slice(cursor, cursor + seg.text.length);
         cursor += seg.text.length;
-
         const content = done ? seg.text : slice;
 
         if (seg.link) {
             return (
-                <Link
-                    key={si}
-                    href={seg.link}
-                    className="border-b border-dotted transition-colors duration-200"
-                    style={{ color: "#4ade80", borderColor: "#4ade8055" }}
-                    onMouseOver={(e) => {
-                        e.currentTarget.style.color = "#86efac";
-                        e.currentTarget.style.borderColor = "#86efac";
-                    }}
-                    onMouseOut={(e) => {
-                        e.currentTarget.style.color = "#4ade80";
-                        e.currentTarget.style.borderColor = "#4ade8055";
-                    }}>
+                <GreenLink key={si} href={seg.link}>
                     {content}
-                </Link>
+                </GreenLink>
             );
         }
 
