@@ -14,8 +14,8 @@ export default function AboutPage() {
     return (
         <div className="w-fit space-y-8">
             <div className="py-4">
-                <h1>The man behind the mask</h1>
-                <p>
+                <h1 className="py-2 text-3xl font-bold tracking-tight text-white">The man behind the mask</h1>
+                <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
                     This isn’t a full autobiography, just a look at the kind of stuff I like to explore, build, and occasionally overthink. Mostly driven by curiosity and a habit
                     of going deep when something grabs my attention.
                 </p>
@@ -37,7 +37,7 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Nea Artaki, Greece
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
                                 I don’t remember much about this milestone. The next 18 years were mostly filled with football, friends, and school. I was such a child back then. I
                                 broke the occasional computer to see what’s inside, played MMORPGs on dial-up internet, and somehow managed to go into university.
                             </p>
@@ -55,11 +55,13 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Athens, Greece
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
-                                This is where my real life starts, this is when I found myself. I moved to Athens to study <strong>Sports Science and Physical Education</strong> in
-                                the <strong>University of Athens</strong>, since I was obsessed with <strong>football</strong>. In my three years in Athens I got actively engaged
-                                in political praxis, translating theory into direct action and community involvement. Toward the end of my time in Athens, I accidentally fell in
-                                love with <strong>physics</strong> — a classic case of one thing leading to several unsolved problems.
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
+                                This is where my real life starts, this is when I found myself. I moved to Athens to study{" "}
+                                <strong className="text-gray-100 font-semibold">Sports Science and Physical Education</strong> in the{" "}
+                                <strong className="text-gray-100 font-semibold">University of Athens</strong>, since I was obsessed with{" "}
+                                <strong className="text-gray-100 font-semibold">football</strong>. In my three years in Athens I got actively engaged in political praxis,
+                                translating theory into direct action and community involvement. Toward the end of my time in Athens, I accidentally fell in love with{" "}
+                                <strong className="text-gray-100 font-semibold">physics</strong> — a classic case of one thing leading to several unsolved problems.
                             </p>
                         </li>
                         <li className="mb-10 ms-6">
@@ -75,10 +77,11 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Manchester, UK
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
                                 Moving abroad to study physics felt like a big decision at the time — and to be fair, it was. Between learning how to make tea properly and
-                                deciphering <strong>quantum mechanics</strong>, I somehow found a rythm. By my second year, I was already getting involved in{" "}
-                                <strong>professional research</strong> with two of my professors, which probably says more about how obsessed I was than how prepared I felt.
+                                deciphering <strong className="text-gray-100 font-semibold">quantum mechanics</strong>, I somehow found a rythm. By my second year, I was already
+                                getting involved in <strong className="text-gray-100 font-semibold">professional research</strong> with two of my professors, which probably says
+                                more about how obsessed I was than how prepared I felt.
                             </p>
                         </li>
                         <li className="mb-10 ms-6">
@@ -94,11 +97,14 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Durham, UK
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
-                                The best year of my life was the one I spent doing my master’s in <strong>particle physics</strong> in the <strong>University of Durham</strong> —
-                                though it didn’t start out that way. I was easily the least prepared student in the room, constantly trying to catch up and make sense of everything
-                                around me. But something clicked along the way. We covered <strong>quantum field theory</strong>, <strong>general relativity</strong>, and even{" "}
-                                <strong>string theory</strong> — the kind of material that feels impossible until, suddenly, it doesn’t. My thesis was on the{" "}
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
+                                The best year of my life was the one I spent doing my master’s in <strong className="text-gray-100 font-semibold">particle physics</strong> in the{" "}
+                                <strong className="text-gray-100 font-semibold">University of Durham</strong> — though it didn’t start out that way. I was easily the least prepared
+                                student in the room, constantly trying to catch up and make sense of everything around me. But something clicked along the way. We covered{" "}
+                                <strong className="text-gray-100 font-semibold">quantum field theory</strong>,{" "}
+                                <strong className="text-gray-100 font-semibold">general relativity</strong>, and even{" "}
+                                <strong className="text-gray-100 font-semibold">string theory</strong> — the kind of material that feels impossible until, suddenly, it doesn’t. My
+                                thesis was on the{" "}
                                 <Link href="https://iopscience.iop.org/article/10.1088/1751-8113/42/50/504008/pdf" target="_blank">
                                     AdS/CFT correspondence and holographic entanglement entropy
                                 </Link>
@@ -121,11 +127,12 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Athens, Greece
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
-                                After my master’s, I started a <strong>PhD in Quantum Plasmonics</strong> at the <strong>University of Birmingham</strong> and made it through the
-                                first year. But somewhere along the way, I realized my heart wasn’t in it. I still loved physics, but academia no longer felt like the right path —
-                                the pace was slow, the impact felt distant. At the same time, I was already working as a developer on the side, and that work felt sharp, fast, and
-                                full of possibility. So I made the switch, moved back to Greece, and went all in.
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
+                                After my master’s, I started a <strong className="text-gray-100 font-semibold">PhD in Quantum Plasmonics</strong> at the{" "}
+                                <strong className="text-gray-100 font-semibold">University of Birmingham</strong> and made it through the first year. But somewhere along the way, I
+                                realized my heart wasn’t in it. I still loved physics, but academia no longer felt like the right path — the pace was slow, the impact felt distant.
+                                At the same time, I was already working as a developer on the side, and that work felt sharp, fast, and full of possibility. So I made the switch,
+                                moved back to Greece, and went all in.
                             </p>
                         </li>
                         <li className="mb-10 ms-6">
@@ -141,7 +148,7 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Athens, Greece
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
                                 Like for most people, those years flew by in a strange mix of uncertainty and routine. For me, they were defined by nonstop work — long hours, new
                                 challenges, and the kind of tunnel vision that comes with building things under pressure. I’ve now been working professionally as a developer for
                                 about eight years, and while I’ve learned a lot, I’ve also been thinking more seriously about what comes next. The next big decision — hopefully the
@@ -161,11 +168,12 @@ export default function AboutPage() {
                                     <HiLocationMarker /> Athens, Greece
                                 </div>
                             </time>
-                            <p className="mb-4 text-base font-normal">
-                                After years of building things behind closed doors, I’ve decided my next chapter belongs to the <strong>open internet</strong>. I want to solve real
-                                problems — the kind that matter to developers, to technology, and maybe even to society. <strong>Open source</strong> is where I can do that while
-                                leaving a mark that others can build on. Whether it’s tools, infrastructure, or ideas, I want my work to be visible, useful, and out in the wild.
-                                That’s where I’m headed: public by default, driven by curiosity, and focused on impact.
+                            <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
+                                After years of building things behind closed doors, I’ve decided my next chapter belongs to the{" "}
+                                <strong className="text-gray-100 font-semibold">open internet</strong>. I want to solve real problems — the kind that matter to developers, to
+                                technology, and maybe even to society. <strong className="text-gray-100 font-semibold">Open source</strong> is where I can do that while leaving a
+                                mark that others can build on. Whether it’s tools, infrastructure, or ideas, I want my work to be visible, useful, and out in the wild. That’s where
+                                I’m headed: public by default, driven by curiosity, and focused on impact.
                             </p>
                         </li>
                     </ol>

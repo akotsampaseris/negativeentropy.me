@@ -63,7 +63,7 @@ export default async function BlogPage() {
 
     return (
         <div>
-            <h1>Blog</h1>
+            <h1 className="py-2 text-3xl font-bold tracking-tight text-white">Blog</h1>
             <Blog posts={posts} />
         </div>
     );

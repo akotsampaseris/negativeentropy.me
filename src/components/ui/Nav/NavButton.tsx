@@ -1,21 +1,46 @@
-'use client';
-
+"use client";
 import React from "react";
 import { MouseEventHandler } from "react";
 
-interface NavButtonProps{
+interface NavButtonProps {
     onClickAction: MouseEventHandler;
+    isOpen?: boolean;
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ onClickAction }) => {
+const NavButton: React.FC<NavButtonProps> = ({ onClickAction, isOpen }) => {
     return (
-        <button onClick={onClickAction} data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-            <span className="sr-only">Open main menu</span>
-            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-            </svg>
+        <button
+            onClick={onClickAction}
+            type="button"
+            aria-controls="navbar"
+            aria-expanded={isOpen}
+            className="group relative flex flex-col justify-center items-center w-8 h-8 gap-1.5 transition-all duration-200">
+            <span className="sr-only">Toggle menu</span>
+            {/* Three lines that animate to X when open */}
+            <span
+                className="block h-px w-5 transition-all duration-300 origin-center"
+                style={{
+                    backgroundColor: isOpen ? "#4ade80" : "#4ade8099",
+                    transform: isOpen ? "translateY(4px) rotate(45deg)" : "none",
+                }}
+            />
+            <span
+                className="block h-px transition-all duration-300"
+                style={{
+                    backgroundColor: isOpen ? "#4ade80" : "#4ade8099",
+                    width: isOpen ? "0px" : "14px",
+                    opacity: isOpen ? 0 : 1,
+                }}
+            />
+            <span
+                className="block h-px w-5 transition-all duration-300 origin-center"
+                style={{
+                    backgroundColor: isOpen ? "#4ade80" : "#4ade8099",
+                    transform: isOpen ? "translateY(-4px) rotate(-45deg)" : "none",
+                }}
+            />
         </button>
-    )
-}
+    );
+};
 
-export default NavButton
+export default NavButton;

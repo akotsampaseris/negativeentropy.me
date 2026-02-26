@@ -44,7 +44,7 @@ export default async function HomePage() {
 
             {/* Contact + Social */}
             <div className="space-y-4">
-                <p className="text-sm text-gray-300">
+                <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
                     Send me a message at <GreenLink href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</GreenLink> or follow me in the apps below.
                 </p>
                 <SocialBar withTitle={true} />
