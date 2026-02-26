@@ -34,24 +34,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 {/* Bottom accent line */}
                 <div className="h-px w-16 mt-2" style={{ background: "linear-gradient(to right, #4ade80, transparent)" }} />
             </div>
-
-            {/* Body */}
-            <div
-                className="prose prose-invert prose-sm sm:prose-base max-w-none
-                    prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-white
-                    prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3
-                    prose-p:text-gray-400 prose-p:leading-relaxed
-                    prose-a:border-b prose-a:border-dotted prose-a:no-underline prose-a:transition-colors prose-a:duration-200
-                    prose-strong:text-gray-100
-                    prose-code:text-xs prose-code:font-mono prose-code:rounded prose-code:px-1.5 prose-code:py-0.5
-                    prose-blockquote:border-l-2 prose-blockquote:text-gray-500 prose-blockquote:italic"
-                style={
-                    {
-                        "--tw-prose-links": "#4ade80",
-                        "--tw-prose-code-bg": "#ffffff0d",
-                        "--tw-prose-quote-borders": "#4ade8055",
-                    } as React.CSSProperties
-                }>
+            <div className="rich-text">
                 <RichText data={post.body} />
             </div>
         </div>

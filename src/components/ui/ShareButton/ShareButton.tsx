@@ -35,16 +35,16 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ title, slug }) => {
     return (
         <button
             onClick={handleShare}
-            className={`flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase py-1 rounded-sm transition-all duration-200 cursor-pointer ${
+            className={`flex items-center gap-1.5 text-xs font-mono tracking-widest py-1 rounded-sm transition-all duration-200 cursor-pointer ${
                 copied ? "text-[#4ade80]" : "text-[#4ade80] hover:text-[#86efac]"
             }`}>
             {copied ? (
                 <>
-                    <RiCheckDoubleLine size={15} /> copied
+                    <RiCheckDoubleLine size={15} /> Copied
                 </>
             ) : (
                 <>
-                    <RiShareLine size={15} /> share
+                    <RiShareLine size={15} /> Share
                 </>
             )}
         </button>

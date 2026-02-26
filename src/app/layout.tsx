@@ -23,7 +23,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <style>{`body { background-color: #121212; }`}</style>
+                <style>{`body { background-color: #121212; color: #ccc; }`}</style>
             </head>
             <body className={`${roboto.variable} font-roboto`}>
                 {environment === "prod" && analyticsHostUrl && analyticsWebsiteId && (
@@ -32,7 +32,7 @@ export default function RootLayout({
                 <ParticleContainer />
                 <div className="z-10 text-left px-6">
                     <Header />
-                    <main className="content py-4 rounded-lg bg-background-mask">
+                    <main className="content py-4 rounded-lg bg-[rgba(18,18,18,0.6)]">
                         <Breadcrumbs />
                         {children}
                     </main>
