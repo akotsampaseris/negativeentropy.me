@@ -1,77 +1,60 @@
-import Link from "next/link";
-
 import SocialBar from "../components/ui/SocialBar/SocialBar";
-import { FrequentlyAskedQuestions } from "../components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
-import LatestBlogPost from "../components/features/Blog/LatestBlogPost";
-import type { PostType } from "../types/posts";
+import LatestBlogPosts from "../components/features/Blog/LatestBlogPost";
+import Currently from "../components/features/Currently/Currently";
+import { PostType } from "../types/posts";
+import { GreenLink } from "../components/ui/GreenLink/GreenLink";
 
-async function getLatestPost() {
+async function getLatestPosts() {
     const apiUrl = process.env.CMS_API_URL;
-
     const filters = {
         sort: "-publishedAt",
         page: 1,
-        limit: 1,
+        limit: 3,
     };
-
     const fullPath = `${apiUrl}/posts?${Object.entries(filters)
         .map(([key, value]) => `${key}=${value}`)
         .join("&")}`;
-
     try {
         const res = await fetch(fullPath);
         const data = await res.json();
-        const post: PostType = data.docs[0];
-
-        return post;
+        const posts: PostType[] = data.docs;
+        return posts;
     } catch (e) {
-        console.log(e);
-        return null;
+        console.error(e);
+        return [];
     }
 }
 
 export default async function HomePage() {
-    const post: PostType | null = await getLatestPost();
+    const posts: PostType[] = await getLatestPosts();
 
     return (
-        <div className="w-fit space-y-4">
-            <div>
-                <h1 className="py-2">Antony Kotsampaseris</h1>
-                <p>
-                    Hey, I am Antony, <strong>software engineer</strong> and <strong>theoretical physicist</strong>. Check out <Link href={"/about"}>my full story</Link>, it{"'"}s
-                    pretty fun.
+        <div className="w-fit space-y-10">
+            {/* Intro */}
+            <div className="space-y-5">
+                <h1 className="py-2 text-3xl font-bold tracking-tight text-white">Antony Kotsampaseris</h1>
+                <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
+                    Hey, I am Antony, a <strong className="text-gray-100 font-semibold">theoretical physicist</strong> turned{" "}
+                    <strong className="text-gray-100 font-semibold">software engineer</strong>. If you catch me daydreaming, I am most likely thinking about{" "}
+                    <strong className="text-gray-100 font-semibold">physics</strong>, <strong className="text-gray-100 font-semibold">software</strong>, and{" "}
+                    <strong className="text-gray-100 font-semibold">politics</strong>. I write about these topics <GreenLink href="/blog">here</GreenLink>. I am looking for the
+                    truth no matter how difficult or uncomfortable it may be.
                 </p>
             </div>
-            <div>
-                <p>
-                    If you catch me daydreaming, I am most likely thinking about <strong>physics</strong>, <strong>software</strong>, <strong>crypto</strong>, and{" "}
-                    <strong>politics</strong>. From now on, I will also be writing about those topics in my <Link href={"/blog"}>Blog</Link>, but watch out because I have very
-                    strong opinions about the things I care about. Reach out if you want to talk about it.
-                </p>
-            </div>
+
+            {/* Contact + Social */}
             <div className="space-y-4">
-                <p>
-                    You can connect with me on the apps below or just e-mail me at <Link href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</Link>.
+                <p className="text-sm text-gray-300">
+                    Send me a message at <GreenLink href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</GreenLink> or follow me in the apps below.
                 </p>
                 <SocialBar withTitle={true} />
             </div>
-            {post && (
-                <div>
-                    <div className="flex-wrap gap-4 py-4">
-                        <h3>Latest Post</h3>
-                        <span className="text-xs">
-                            <Link href={"/blog"}>View all posts</Link>
-                        </span>
-                    </div>
-                    <div className="px-2 border rounded-xl">
-                        <LatestBlogPost post={post} />
-                    </div>
-                </div>
-            )}
-            <div className="py-4">
-                <h3>Frequently Asked Questions</h3>
-                <FrequentlyAskedQuestions />
-            </div>
+
+            {/* Currently */}
+            <Currently />
+
+            {/* Latest Posts */}
+            <LatestBlogPosts posts={posts} />
         </div>
     );
 }

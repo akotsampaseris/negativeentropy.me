@@ -3,6 +3,8 @@ import { HiCalendar, HiFlag, HiLocationMarker } from "react-icons/hi";
 import { Metadata } from "next";
 import Link from "next/link";
 
+import { FrequentlyAskedQuestions } from "@/src/components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
+
 export const metadata: Metadata = {
     title: "About me",
     description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
@@ -10,15 +12,15 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <div className="w-fit space-y-4">
-            <div>
+        <div className="w-fit space-y-8">
+            <div className="py-4">
                 <h1>The man behind the mask</h1>
                 <p>
                     This isn’t a full autobiography, just a look at the kind of stuff I like to explore, build, and occasionally overthink. Mostly driven by curiosity and a habit
                     of going deep when something grabs my attention.
                 </p>
             </div>
-            <div>
+            <div className="py-4">
                 <h3>The Highlights</h3>
                 <div className="p-4">
                     <ol className="relative border-s border-gray-600">
@@ -168,6 +170,10 @@ export default function AboutPage() {
                         </li>
                     </ol>
                 </div>
+            </div>
+            <div className="py-4">
+                <h3>Frequently Asked Questions</h3>
+                <FrequentlyAskedQuestions />
             </div>
         </div>
     );
