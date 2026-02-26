@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions } from "@tsparticles/engine";
-import { loadFull } from "tsparticles";
+import { loadSlim } from "@tsparticles/slim";
 
 import { particlesConfig } from "@/assets/particles";
 
@@ -12,7 +12,7 @@ const ParticleContainer = () => {
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            await loadFull(engine);
+            await loadSlim(engine);
         }).then(() => {
             setInit(true);
         });
