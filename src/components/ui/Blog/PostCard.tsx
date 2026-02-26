@@ -28,12 +28,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 {/* Title */}
                 <Link href={`/blog/${post.slug}`}>
                     <h3
-                        className="text-base font-semibold leading-snug mb-3 text-gray-100 group-hover:text-white transition-colors duration-200"
+                        className="relative text-base font-semibold leading-snug mb-3 text-gray-100 group-hover:text-white transition-all duration-200 group-hover:translate-x-5"
                         style={{
                             fontFamily: "monospace",
                             letterSpacing: "0.01em",
                         }}>
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 mr-2" style={{ color: "#4ade80" }}>
+                        <span className="absolute -left-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: "#4ade80" }}>
                             ⟶
                         </span>
                         {post.title}
