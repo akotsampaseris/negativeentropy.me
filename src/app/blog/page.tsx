@@ -4,7 +4,7 @@ import { PostType } from "@/src/types/posts";
 
 export const metadata: Metadata = {
     title: "Blog",
-    description: "Writing on physics, blockchain, determinism, and software engineering. A glimpse into my mind.",
+    description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
 };
 
 interface PostFilters {

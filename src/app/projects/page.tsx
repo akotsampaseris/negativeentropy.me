@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+
+import { GreenLink } from "@/src/components/ui/GreenLink/GreenLink";
 
 type Category = "all" | "software" | "physics" | "open-source";
 type Status = "in-progress" | "completed" | "archived";
@@ -206,16 +207,10 @@ const PublicationBlock = ({ pub, id }: { pub: Publication; id: string }) => (
                 <div className="flex gap-2">
                     <span style={{ color: "#4ade8055" }}>doi </span>
                     <span style={{ color: "#9ca3af" }}>=</span>
-                    <Link
-                        href={`https://doi.org/${pub.doi}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-colors duration-200"
-                        style={{ color: "#4ade80" }}
-                        onMouseOver={(e) => (e.currentTarget.style.color = "#86efac")}
-                        onMouseOut={(e) => (e.currentTarget.style.color = "#4ade80")}>
+                    <GreenLink href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer">
+                        {" "}
                         {"{" + pub.doi + "}"}
-                    </Link>
+                    </GreenLink>
                 </div>
             )}
             {pub.preprint && (
@@ -324,40 +319,19 @@ const ProjectEntry = ({ project, index, visible }: { project: Project; index: nu
                             </div>
                             <div className="flex flex-wrap gap-4">
                                 {project.links.github && (
-                                    <Link
-                                        href={project.links.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-1.5 text-xs transition-colors duration-200"
-                                        style={{ color: "#4ade8066" }}
-                                        onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                                        onMouseOut={(e) => (e.currentTarget.style.color = "#4ade8066")}>
+                                    <GreenLink href={project.links.github} target="_blank" rel="noopener noreferrer">
                                         github.lnk <span>⟶</span>
-                                    </Link>
+                                    </GreenLink>
                                 )}
                                 {project.links.live && (
-                                    <Link
-                                        href={project.links.live}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-1.5 text-xs transition-colors duration-200"
-                                        style={{ color: "#4ade8066" }}
-                                        onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                                        onMouseOut={(e) => (e.currentTarget.style.color = "#4ade8066")}>
+                                    <GreenLink href={project.links.live} target="_blank" rel="noopener noreferrer">
                                         live.lnk <span>⟶</span>
-                                    </Link>
+                                    </GreenLink>
                                 )}
                                 {project.links.paper && (
-                                    <Link
-                                        href={project.links.paper}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-1.5 text-xs transition-colors duration-200"
-                                        style={{ color: "#4ade8066" }}
-                                        onMouseOver={(e) => (e.currentTarget.style.color = "#4ade80")}
-                                        onMouseOut={(e) => (e.currentTarget.style.color = "#4ade8066")}>
+                                    <GreenLink href={project.links.paper} target="_blank" rel="noopener noreferrer">
                                         paper.lnk <span>⟶</span>
-                                    </Link>
+                                    </GreenLink>
                                 )}
                             </div>
                         </div>

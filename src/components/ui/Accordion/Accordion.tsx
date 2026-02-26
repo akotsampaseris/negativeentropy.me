@@ -1,85 +1,62 @@
 "use client";
-
-import React from "react";
-
-import styles from './Accordion.module.css'
+import React, { useState } from "react";
 import { AccordionItemType } from "@/src/types/accordionItem";
 
 interface AccordionProps {
-  items: AccordionItemType[];
+    items: AccordionItemType[];
 }
 
 export const Accordion: React.FC<AccordionProps> = ({ items }) => {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggleAccordionItem = (e: React.SyntheticEvent<EventTarget>) => {
-    if (!(e.target instanceof HTMLButtonElement)){
-        return ;
-    }
-    
-    const accordionItemIndex = e.target.dataset['accordionIndex']
-    const accordionItemTitle = document.getElementById(`#accordion-title-${accordionItemIndex}`)
-    const accordionItemButtonIcon = document.getElementById(`#accordion-button-icon-${accordionItemIndex}`) 
-    const accordionItemBody = document.getElementById(`#accordion-content-${accordionItemIndex}`)
+    const toggle = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
 
-    if (accordionItemTitle?.classList.contains(styles.active)){
-        accordionItemTitle?.classList.remove(styles.active);
-        accordionItemButtonIcon?.classList.add('rotate-180');
-        accordionItemBody?.classList.add('hidden');
-    } else {
-        accordionItemTitle?.classList.add(styles.active);
-        accordionItemButtonIcon?.classList.remove('rotate-180');
-        accordionItemBody?.classList.remove('hidden');
-    }
-  };
+    return (
+        <div className="space-y-0">
+            {items.map((item, index) => {
+                const isOpen = openIndex === index;
+                return (
+                    <div key={index} className="group">
+                        {/* Trigger */}
+                        <button
+                            type="button"
+                            onClick={() => toggle(index)}
+                            aria-expanded={isOpen}
+                            className="w-full flex items-center justify-between gap-4 py-4 border-b text-left transition-colors duration-200"
+                            style={{ borderColor: isOpen ? "#4ade8033" : "#ffffff0a" }}>
+                            <div className="flex items-center gap-2">
+                                {item.icon && <item.icon className="text-xs flex-shrink-0" style={{ color: "#4ade8066" }} />}
+                                <span className="text-sm font-mono tracking-wide transition-colors duration-200" style={{ color: isOpen ? "#4ade80" : "#e5e7eb" }}>
+                                    {item.title}
+                                </span>
+                            </div>
 
-  return (
-    <div id="accordion-flush" data-accordion="collapse">
-      {items.map((item, index) => (
-        <div key={`accordion-item-${index}`}>
-            <button
-                type="button"
-                onClick={toggleAccordionItem}
-                id={`#accordion-title-${index}`}
-                className="w-full py-5 rtl:text-right border-b border-gray-700"
-                data-accordion-index={index}
-                aria-expanded="true"
-                aria-controls={`#accordion-content-${index}`}
-            >
-              <div className="flex items-center justify-between gap-4 pointer-events-none">
-                <div className="flex gap-2">
-                {item.icon ? <item.icon /> : ""}
-                <span>{item.title}</span>
-                </div>
-                <svg
-                id={`#accordion-button-icon-${index}`}
-                data-accordion-icon
-                className="w-3 h-3 rotate-180"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-                >
-                <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5 5 1 1 5"
-                />
-                </svg>
-              </div>
-            </button>
-          <div
-            id={`#accordion-content-${index}`}
-            className="hidden"
-            aria-labelledby={`#accordion-title-${index}`}
-          >
-            <div className="p-6 border-b border-gray-700 bg-[#2223]">
-              <p dangerouslySetInnerHTML={{ __html: item.content }}></p>
-            </div>
-          </div>
+                            {/* Arrow */}
+                            <span
+                                className="flex-shrink-0 text-xs transition-all duration-300"
+                                style={{
+                                    color: "#4ade8055",
+                                    transform: isOpen ? "rotate(90deg)" : "none",
+                                }}>
+                                ▶
+                            </span>
+                        </button>
+
+                        {/* Body */}
+                        <div className="overflow-hidden transition-all duration-300" style={{ maxHeight: isOpen ? "500px" : "0px" }}>
+                            <div className="py-4 border-b" style={{ borderColor: "#4ade8011" }}>
+                                <div
+                                    className="text-sm leading-relaxed text-gray-400 pl-5 border-l"
+                                    style={{ borderColor: "#4ade8033" }}
+                                    dangerouslySetInnerHTML={{ __html: item.content }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
-      ))}
-    </div>
-  );
+    );
 };

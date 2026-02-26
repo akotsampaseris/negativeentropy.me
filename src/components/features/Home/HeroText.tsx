@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+
+import { GreenLink } from "../../ui/GreenLink/GreenLink";
 
 const ENTROPY_CHARS = "∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≈≉⟁⟂⟃⟇⟈⟉⟊⟋∫∬∭∮∯∰∱∲∳∇∆∂∃∄∅∆∇∈∉∊∋∌∍";
 
@@ -88,23 +89,9 @@ const HeroText: React.FC = () => {
         if (seg.link) {
             const isExternal = seg.link.startsWith("http") || seg.link.startsWith("mailto");
             return (
-                <Link
-                    key={si}
-                    href={seg.link}
-                    target={isExternal ? "_blank" : undefined}
-                    rel={isExternal ? "noopener noreferrer" : undefined}
-                    className="border-b border-dotted transition-colors duration-200"
-                    style={{ color: "#4ade80", borderColor: "#4ade8055" }}
-                    onMouseOver={(e) => {
-                        e.currentTarget.style.color = "#86efac";
-                        e.currentTarget.style.borderColor = "#86efac";
-                    }}
-                    onMouseOut={(e) => {
-                        e.currentTarget.style.color = "#4ade80";
-                        e.currentTarget.style.borderColor = "#4ade8055";
-                    }}>
+                <GreenLink key={si} href={seg.link} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
                     {content}
-                </Link>
+                </GreenLink>
             );
         }
 
