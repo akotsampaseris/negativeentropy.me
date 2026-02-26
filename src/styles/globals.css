@@ -58,29 +58,7 @@ h4 {
     color: #ddd;
 }
 
-a {
-    color: #4cc45c;
-    font-weight: 800;
-}
-
-a:hover {
-    color: #a5ffb1;
-    font-weight: 800;
-}
-
-
 strong {
     color: #fff;
     font-weight: 900;
-}
-
-.button {
-    padding: 10px 30px;
-    border: #4cc45c solid 1px;
-    border-radius: 20px;
-}
-
-.button:hover {
-    border: #a5ffb1 solid 1px;
-
 }

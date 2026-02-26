@@ -1,14 +1,10 @@
 const Footer = () => {
-  return (
-    <footer className="rounded-lg m-4">
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <hr className="my-6 border-gray-700 mx-auto lg:my-8" />
-        <span className="block text-sm text-center">
-          © 2025 - 2026 Antony Kotsampaseris. All Rights Reserved.
-        </span>
-      </div>
-    </footer>
-  );
+    return (
+        <footer className="mt-16 py-8">
+            <div className="h-px w-full mb-8" style={{ background: "linear-gradient(to right, transparent, #4ade8033, transparent)" }} />
+            <span className="block text-xs text-center font-mono tracking-widest text-[#4ade80]">© 2025 – 2026 Antony Kotsampaseris. All Rights Reserved.</span>
+        </footer>
+    );
 };
 
 export default Footer;
