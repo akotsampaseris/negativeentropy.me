@@ -32,7 +32,7 @@ async function getPosts(pagination: boolean = true, page: number = 1, postsPerPa
         .join("&")}`;
 
     try {
-        const res = await fetch(fullPath, { cache: "no-store" });
+        const res = await fetch(fullPath);
         const data = await res.json();
         return (data.docs as PostType[]) ?? [];
     } catch (e) {

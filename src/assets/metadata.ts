@@ -43,14 +43,4 @@ export const defaultMetadata: Metadata = {
         description: "Physicist who codes. Exploring hard determinism, quantum theory, and where software engineering meets fundamental science.",
         images: ["https://negativeentropy.me/symbol_original.png"],
     },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-        },
-    },
 };
