@@ -52,9 +52,9 @@ const Currently = () => {
                     <span className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping" style={{ backgroundColor: "#4ade80" }} />
                     <span className="relative inline-flex w-2 h-2 rounded-full" style={{ backgroundColor: "#4ade80" }} />
                 </div>
-                <h3 className="text-base font-semibold tracking-[0.2em] uppercase whitespace-nowrap" style={{ color: "#4ade80" }}>
+                <h2 className="text-base font-semibold tracking-[0.2em] uppercase whitespace-nowrap" style={{ color: "#4ade80" }}>
                     Currently
-                </h3>
+                </h2>
                 <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, #4ade8033, transparent)" }} />
             </div>
 

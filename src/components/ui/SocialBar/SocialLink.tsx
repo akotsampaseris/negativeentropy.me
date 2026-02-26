@@ -9,7 +9,7 @@ interface SocialLinkProps {
 
 const SocialLink: React.FC<SocialLinkProps> = ({ socialLink, withTitle }) => {
     return (
-        <GreenLink href={socialLink.url}>
+        <GreenLink href={socialLink.url} target="_blank" rel="noopener noreferrer" ariaLabel={socialLink.title}>
             <socialLink.icon className="text-xl transition-transform duration-200 group-hover:scale-110" />
             {withTitle && <span className="text-xs font-mono tracking-widest uppercase">{socialLink.title}</span>}
         </GreenLink>

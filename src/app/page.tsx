@@ -13,7 +13,7 @@ async function getLatestPosts() {
     const fullPath = `${apiUrl}/posts?${Object.entries(filters)
         .map(([key, value]) => `${key}=${value}`)
         .join("&")}`;
-        
+
     try {
         const res = await fetch(fullPath);
         const data = await res.json();
@@ -32,7 +32,7 @@ export default async function HomePage() {
         <div className="w-fit space-y-10">
             {/* Intro */}
             <div className="space-y-5">
-                <h1 className="py-2 text-3xl font-bold tracking-tight text-white">Antony Kotsampaseris</h1>
+                <h1 className="py-2 font-bold tracking-tight text-white">Antony Kotsampaseris</h1>
                 <HeroText />
             </div>
 
