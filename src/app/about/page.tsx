@@ -3,10 +3,38 @@ import { Metadata } from "next";
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 import { FrequentlyAskedQuestions } from "@/components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 
-export const metadata: Metadata = {
-    title: "About me",
-    description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const url = "https://negativeentropy.me/about";
+    const image = "https://negativeentropy.me/full_width_banner.png";
+
+    return {
+        title: "About me",
+        description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
+        alternates: {
+            canonical: url,
+        },
+        openGraph: {
+            title: "About me",
+            description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
+            url,
+            siteName: "negativeentropy.me",
+            locale: "en_US",
+            authors: ["Antony Kotsampaseris"],
+            images: [
+                {
+                    url: image,
+                    alt: "About me - negativeentropy.me",
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "About me",
+            description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
+            images: [image],
+        },
+    };
+}
 
 const timelineItems = [
     {

@@ -2,11 +2,6 @@ import { type Metadata } from "next";
 import Blog from "@/components/features/Blog/Blog";
 import { PostType } from "@/types/posts";
 
-export const metadata: Metadata = {
-    title: "Blog",
-    description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
-};
-
 interface PostFilters {
     sort?: string;
     limit?: number;
@@ -39,6 +34,39 @@ async function getPosts(pagination: boolean = true, page: number = 1, postsPerPa
         console.log(e);
         return [];
     }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+    const url = "https://negativeentropy.me/blog";
+    const image = "https://negativeentropy.me/symbol_original.png";
+
+    return {
+        title: "Blog",
+        description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
+        alternates: {
+            canonical: url,
+        },
+        openGraph: {
+            title: "Blog",
+            description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
+            url,
+            siteName: "negativeentropy.me",
+            locale: "en_US",
+            authors: ["Antony Kotsampaseris"],
+            images: [
+                {
+                    url: image,
+                    alt: "Blog - negativeentropy.me",
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "Blog",
+            description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
+            images: [image],
+        },
+    };
 }
 
 interface BlogPageProps {
