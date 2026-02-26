@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { PostType } from "@/src/types/posts";
-import { dateFormatter } from "@/src/utils/formatter";
-import { GreenLink } from "../GreenLink/GreenLink";
+
+import { ShareButton } from "@/components/ui/ShareButton/ShareButton";
+import { PostType } from "@/types/posts";
+import { dateFormatter } from "@/utils/formatter";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
 interface PostCardProps {
     post: PostType;
@@ -54,6 +56,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                         </>
                     )}
                     <span className="text-white/30">{dateFormatter(post.publishedAt)}</span>
+                    <ShareButton title={post.title} slug={post.slug} />
                 </div>
             </div>
         </div>

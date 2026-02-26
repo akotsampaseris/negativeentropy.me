@@ -2,7 +2,7 @@
 
 import React from "react";
 import SocialLink from "./SocialLink";
-import { socialLinks } from "@/src/assets/socialLinks";
+import { socialLinks } from "@/assets/socialLinks";
 
 interface SocialBarProps {
     withTitle?: boolean;

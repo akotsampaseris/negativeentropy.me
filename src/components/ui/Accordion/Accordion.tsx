@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { AccordionItemType } from "@/src/types/accordionItem";
+import { AccordionItemType } from "@/types/accordionItem";
 
 interface AccordionProps {
     items: AccordionItemType[];

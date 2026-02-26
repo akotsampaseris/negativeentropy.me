@@ -1,9 +1,9 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import BlogPost from "@/src/components/features/Blog/BlogPost";
-import { PostType } from "@/src/types/posts";
-import ReadingProgressBar from "@/src/components/ui/Blog/ReadingProgressBar";
+import BlogPost from "@/components/features/Blog/BlogPost";
+import { PostType } from "@/types/posts";
+import ReadingProgressBar from "@/components/ui/Blog/ReadingProgressBar";
 
 async function getPost(slug: string) {
     const res = await fetch(`https://cms.negativeentropy.me/api/posts?where[slug][equals]=${slug}`);

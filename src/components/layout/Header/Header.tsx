@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import Logo from "../../ui/Logo/Logo";
-import NavLink from "../../ui/Nav/NavLink";
-import NavButton from "../../ui/Nav/NavButton";
-import SocialBar from "../../ui/SocialBar/SocialBar";
+
+import Logo from "@/components/ui/Logo/Logo";
+import NavLink from "@/components/ui/Nav/NavLink";
+import NavButton from "@/components/ui/Nav/NavButton";
+import SocialBar from "@/components/ui/SocialBar/SocialBar";
 
 const navLinks = [
     { url: "/about", title: "About" },

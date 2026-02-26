@@ -1,4 +1,4 @@
-import { GreenLink } from "../../ui/GreenLink/GreenLink";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
 const HeroText: React.FC = () => {
     return (

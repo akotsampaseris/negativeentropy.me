@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import { GreenLink } from "../../ui/GreenLink/GreenLink";
-import { PostType } from "@/src/types/posts";
-import PostCard from "../../ui/Blog/PostCard";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
+import { PostType } from "@/types/posts";
+import PostCard from "@/components/ui/Blog/PostCard";
 
 interface LatestBlogPostsProps {
     posts: PostType[];

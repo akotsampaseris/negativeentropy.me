@@ -1,11 +1,11 @@
-import "@/src/styles/globals.css";
+import "@/styles/globals.css";
 import type { Metadata } from "next";
 
-import Header from "../components/layout/Header/Header";
-import Footer from "../components/layout/Footer/Footer";
-import ParticleContainer from "../components/ui/Particles/ParticleContainer";
-import Breadcrumbs from "../components/ui/Breadcrumbs/Breadcrumbs";
-import { defaultMetadata } from "../assets/metadata";
+import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
+import ParticleContainer from "@/components/ui/Particles/ParticleContainer";
+import Breadcrumbs from "@/components/ui/Breadcrumbs/Breadcrumbs";
+import { defaultMetadata } from "@/assets/metadata";
 
 const environment = process.env.ENV ?? "dev";
 

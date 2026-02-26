@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { GreenLink } from "../GreenLink/GreenLink";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
 interface NavLinkProps {
     url: string;

@@ -1,7 +1,7 @@
 import { HiCalendar, HiLocationMarker } from "react-icons/hi";
 import { Metadata } from "next";
-import { GreenLink } from "@/src/components/ui/GreenLink/GreenLink";
-import { FrequentlyAskedQuestions } from "@/src/components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
+import { FrequentlyAskedQuestions } from "@/components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 
 export const metadata: Metadata = {
     title: "About me",
@@ -55,10 +55,10 @@ const timelineItems = [
         content: (
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
                 The best year of my life was the one I spent doing my master&apos;s in <strong className="text-gray-100 font-semibold">particle physics</strong> at the{" "}
-                <strong className="text-gray-100 font-semibold">University of Durham</strong> — though it didn&apos;t start out that way. I was easily the least prepared student in the
-                room, constantly trying to catch up. But something clicked along the way. We covered <strong className="text-gray-100 font-semibold">quantum field theory</strong>,{" "}
-                <strong className="text-gray-100 font-semibold">general relativity</strong>, and even <strong className="text-gray-100 font-semibold">string theory</strong>. My
-                thesis was on the{" "}
+                <strong className="text-gray-100 font-semibold">University of Durham</strong> — though it didn&apos;t start out that way. I was easily the least prepared student in
+                the room, constantly trying to catch up. But something clicked along the way. We covered{" "}
+                <strong className="text-gray-100 font-semibold">quantum field theory</strong>, <strong className="text-gray-100 font-semibold">general relativity</strong>, and even{" "}
+                <strong className="text-gray-100 font-semibold">string theory</strong>. My thesis was on the{" "}
                 <GreenLink href="https://iopscience.iop.org/article/10.1088/1751-8113/42/50/504008/pdf" target="_blank" rel="noopener noreferrer">
                     AdS/CFT correspondence and holographic entanglement entropy
                 </GreenLink>
@@ -75,8 +75,8 @@ const timelineItems = [
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
                 After my master&apos;s, I started a <strong className="text-gray-100 font-semibold">PhD in Quantum Plasmonics</strong> at the{" "}
                 <strong className="text-gray-100 font-semibold">University of Birmingham</strong> and made it through the first year. But somewhere along the way, I realized my
-                heart wasn&apos;t in it. I still loved physics, but academia no longer felt like the right path. At the same time, I was already working as a developer on the side, and
-                that work felt sharp, fast, and full of possibility. So I made the switch, moved back to Greece, and went all in.
+                heart wasn&apos;t in it. I still loved physics, but academia no longer felt like the right path. At the same time, I was already working as a developer on the side,
+                and that work felt sharp, fast, and full of possibility. So I made the switch, moved back to Greece, and went all in.
             </p>
         ),
     },
@@ -87,8 +87,8 @@ const timelineItems = [
         content: (
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
                 Like for most people, those years flew by in a strange mix of uncertainty and routine. For me, they were defined by nonstop work — long hours, new challenges, and
-                the kind of tunnel vision that comes with building things under pressure. I&apos;ve now been working professionally as a developer for about eight years, and while I&apos;ve
-                learned a lot, I&apos;ve also been thinking more seriously about what comes next.
+                the kind of tunnel vision that comes with building things under pressure. I&apos;ve now been working professionally as a developer for about eight years, and while
+                I&apos;ve learned a lot, I&apos;ve also been thinking more seriously about what comes next.
             </p>
         ),
     },
@@ -114,8 +114,8 @@ export default function AboutPage() {
             <div className="space-y-4">
                 <h1 className="text-3xl font-bold tracking-tight text-white">The man behind the mask</h1>
                 <p className="text-sm leading-relaxed font-mono max-w-xl" style={{ color: "#9ca3af" }}>
-                    This isn&apos;t a full autobiography, just a look at the kind of stuff I like to explore, build, and occasionally overthink. Mostly driven by curiosity and a habit
-                    of going deep when something grabs my attention.
+                    This isn&apos;t a full autobiography, just a look at the kind of stuff I like to explore, build, and occasionally overthink. Mostly driven by curiosity and a
+                    habit of going deep when something grabs my attention.
                 </p>
                 <div className="h-px w-24" style={{ background: "linear-gradient(to right, #4ade80, transparent)" }} />
             </div>

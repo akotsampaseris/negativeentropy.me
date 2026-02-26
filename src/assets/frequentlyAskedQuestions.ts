@@ -1,4 +1,4 @@
-import { FrequentlyAskedQuestionType } from "../types/frequentlyAskedQuestion";
+import { FrequentlyAskedQuestionType } from "@/types/frequentlyAskedQuestion";
 
 export const frequentlyAskedQuestions: FrequentlyAskedQuestionType[] = [
     {

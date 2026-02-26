@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { GreenLink } from "@/src/components/ui/GreenLink/GreenLink";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
 type Category = "all" | "software" | "physics" | "open-source";
 type Status = "in-progress" | "completed" | "archived";

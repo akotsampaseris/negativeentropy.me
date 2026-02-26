@@ -1,5 +1,5 @@
 import { RiGithubLine, RiLinkedinBoxFill, RiBlueskyLine } from "react-icons/ri";
-import { SocialLinkType } from "../types/socialLink";
+import { SocialLinkType } from "@/types/socialLink";
 
 export const socialLinks: SocialLinkType[] = [
     {

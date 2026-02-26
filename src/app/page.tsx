@@ -1,7 +1,7 @@
-import LatestBlogPosts from "../components/features/Blog/LatestBlogPost";
-import Currently from "../components/features/Currently/Currently";
-import { PostType } from "../types/posts";
-import HeroText from "../components/features/Home/HeroText";
+import LatestBlogPosts from "@/components/features/Blog/LatestBlogPost";
+import Currently from "@/components/features/Currently/Currently";
+import { PostType } from "@/types/posts";
+import HeroText from "@/components/features/Home/HeroText";
 
 async function getLatestPosts() {
     const apiUrl = process.env.CMS_API_URL;

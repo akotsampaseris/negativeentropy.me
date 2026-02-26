@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { RichText } from "@payloadcms/richtext-lexical/react";
-import { PostType } from "@/src/types/posts";
-import { dateFormatter } from "@/src/utils/formatter";
-import { GreenLink } from "../../ui/GreenLink/GreenLink";
+import { PostType } from "@/types/posts";
+import { dateFormatter } from "@/utils/formatter";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
 interface BlogPostProps {
     post: PostType;

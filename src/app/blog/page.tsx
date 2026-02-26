@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
-import Blog from "@/src/components/features/Blog/Blog";
-import { PostType } from "@/src/types/posts";
+import Blog from "@/components/features/Blog/Blog";
+import { PostType } from "@/types/posts";
 
 export const metadata: Metadata = {
     title: "Blog",

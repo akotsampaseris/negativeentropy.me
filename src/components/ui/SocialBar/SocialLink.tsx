@@ -1,6 +1,6 @@
 import React from "react";
-import { SocialLinkType } from "@/src/types/socialLink";
-import { GreenLink } from "../GreenLink/GreenLink";
+import { SocialLinkType } from "@/types/socialLink";
+import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
 interface SocialLinkProps {
     socialLink: SocialLinkType;
