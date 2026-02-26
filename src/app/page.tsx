@@ -3,6 +3,7 @@ import LatestBlogPosts from "../components/features/Blog/LatestBlogPost";
 import Currently from "../components/features/Currently/Currently";
 import { PostType } from "../types/posts";
 import { GreenLink } from "../components/ui/GreenLink/GreenLink";
+import HeroText from "../components/features/Home/HeroText";
 
 async function getLatestPosts() {
     const apiUrl = process.env.CMS_API_URL;
@@ -32,6 +33,7 @@ export default async function HomePage() {
         <div className="w-fit space-y-10">
             {/* Intro */}
             <div className="space-y-5">
+                <HeroText />
                 <h1 className="py-2 text-3xl font-bold tracking-tight text-white">Antony Kotsampaseris</h1>
                 <p className="text-sm leading-relaxed text-gray-300 max-w-xl">
                     Hey, I am Antony, a <strong className="text-gray-100 font-semibold">theoretical physicist</strong> turned{" "}

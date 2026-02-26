@@ -23,7 +23,7 @@ function useGlitch(text: string, active: boolean) {
             setDisplay(
                 text
                     .split("")
-                    .map((char, i) => (Math.random() < 0.35 ? ENTROPY_CHARS[Math.floor(Math.random() * ENTROPY_CHARS.length)] : char))
+                    .map((char) => (Math.random() < 0.35 ? ENTROPY_CHARS[Math.floor(Math.random() * ENTROPY_CHARS.length)] : char))
                     .join(""),
             );
             frame++;
