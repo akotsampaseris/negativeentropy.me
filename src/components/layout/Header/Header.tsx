@@ -8,6 +8,7 @@ import SocialBar from "../../ui/SocialBar/SocialBar";
 const navLinks = [
     { url: "/about", title: "About" },
     { url: "/blog", title: "Blog" },
+    { url: "/projects", title: "Projects" },
     { url: "/photos", title: "Photos" },
 ];
 
