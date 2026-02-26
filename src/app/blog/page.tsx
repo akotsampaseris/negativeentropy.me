@@ -1,72 +1,65 @@
 import { type Metadata } from "next";
-
 import Blog from "@/src/components/features/Blog/Blog";
 import { PostType } from "@/src/types/posts";
 
 export const metadata: Metadata = {
     title: "Blog",
-    description: "Writing on physics, blockchain, determinism, and software engineering. A glimpse into my mind.",
+    description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
 };
 
 interface PostFilters {
     sort?: string;
     limit?: number;
     page?: number;
-    category?: string;
+    "where[category.name][equals]"?: string;
 }
 
-async function getPosts(pagination: boolean = true, page: number = 1, postsPerPage: number = 5, sortBy: string = "-publishedAt") {
+async function getPosts(pagination: boolean = true, page: number = 1, postsPerPage: number = 5, sortBy: string = "-publishedAt", category?: string) {
     const apiUrl = process.env.CMS_API_URL;
+    const filters: PostFilters = { sort: sortBy };
 
-    const filters: PostFilters = {
-        sort: sortBy,
-        category: "physics",
-    };
-
-    if (!!pagination) {
+    if (pagination) {
         filters.page = page;
         filters.limit = postsPerPage;
     }
 
+    if (category) {
+        filters["where[category.name][equals]"] = category;
+    }
+
     const fullPath = `${apiUrl}/posts?${Object.entries(filters)
-        .map(([key, value]) => `${key}=${value}`)
+        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
         .join("&")}`;
 
     try {
-        const res = await fetch(fullPath);
+        const res = await fetch(fullPath, { cache: "no-store" });
         const data = await res.json();
-        const posts: PostType[] = data.docs;
-        return posts;
+        return (data.docs as PostType[]) ?? [];
     } catch (e) {
         console.log(e);
         return [];
     }
 }
 
-export default async function BlogPage() {
-    const pagination = false;
-    const page = 1;
-    const postsPerPage = 5;
-    const sortBy = "-publishedAt";
-    const posts: PostType[] = await getPosts(pagination, page, postsPerPage, sortBy);
+interface BlogPageProps {
+    searchParams: Promise<{ category?: string }>;
+}
 
-    // TODO: Implement loadMore functionality
-    // const loadMore = async () => {
-    //   "use server";
-    //   const nextPage = page + 1;
-    //   const nextPosts = await getPosts(
-    //     pagination,
-    //     nextPage,
-    //     postsPerPage,
-    //     sortBy,
-    //   );
-    //   posts.push(...nextPosts);
-    // };
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+    const { category } = await searchParams;
+    const posts: PostType[] = await getPosts(false, 1, 5, "-publishedAt", category);
 
     return (
         <div>
-            <h1 className="py-2 text-3xl font-bold tracking-tight text-white">Blog</h1>
-            <Blog posts={posts} />
+            <div className="flex items-baseline gap-4 py-2 mb-2">
+                <h1 className="text-3xl font-bold tracking-tight text-white">Blog</h1>
+                {category && (
+                    <span className="text-xs font-mono tracking-widest uppercase" style={{ color: "#4ade8099" }}>
+                        ⟶ {category}
+                    </span>
+                )}
+            </div>
+            <Blog posts={posts} activeCategory={category} />
         </div>
     );
 }
