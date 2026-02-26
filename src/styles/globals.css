@@ -4,6 +4,7 @@
 
 :root {
     --color-background: #121212;
+    --color-background-mask: rgba(18,18,18,0.5);
     --color-border: #1d202a;
     --color-accent: #4cc45c;
     --color-accent-hover: #4cc45c;
@@ -15,6 +16,7 @@
     --font-display: "Inter", "sans-serif";
     --font-roboto: "Roboto", "sans-serif";
     --color-background: var(--color-background);
+    --color-background-mask: var(--color-background-mask);
     --color-border: var(--color-border);
     --color-accent: var(--color-accent);
     --color-accent-hover: var(--color-accent-hover);

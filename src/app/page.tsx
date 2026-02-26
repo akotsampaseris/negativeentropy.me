@@ -13,6 +13,7 @@ async function getLatestPosts() {
     const fullPath = `${apiUrl}/posts?${Object.entries(filters)
         .map(([key, value]) => `${key}=${value}`)
         .join("&")}`;
+        
     try {
         const res = await fetch(fullPath);
         const data = await res.json();
