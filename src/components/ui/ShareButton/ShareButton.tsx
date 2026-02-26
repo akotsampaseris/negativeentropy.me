@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { RiShareLine, RiCheckDoubleLine } from "react-icons/ri";
 
 interface ShareButtonProps {
     title: string;
@@ -13,38 +14,39 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ title, slug }) => {
     const handleShare = async () => {
         const url = `${window.location.origin}/blog/${slug}`;
 
-        // Mobile — use native share sheet if available
         if (navigator.share) {
             try {
                 await navigator.share({ title, url });
             } catch {
-                // User cancelled — do nothing
+                // User cancelled
             }
             return;
         }
 
-        // Desktop — copy to clipboard
         try {
             await navigator.clipboard.writeText(url);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch {
-            // Clipboard API not available — nothing we can do
+            // Clipboard API not available
         }
     };
 
     return (
         <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase transition-all duration-200"
-            style={{ color: copied ? "#4ade80" : "#4ade8044" }}
-            onMouseOver={(e) => {
-                if (!copied) (e.currentTarget as HTMLElement).style.color = "#4ade8099";
-            }}
-            onMouseOut={(e) => {
-                if (!copied) (e.currentTarget as HTMLElement).style.color = "#4ade8044";
-            }}>
-            {copied ? <>∎ copied</> : <>⟐ share</>}
+            className={`flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase py-1 rounded-sm transition-all duration-200 cursor-pointer ${
+                copied ? "text-[#4ade80]" : "text-[#4ade80] hover:text-[#86efac]"
+            }`}>
+            {copied ? (
+                <>
+                    <RiCheckDoubleLine size={15} /> copied
+                </>
+            ) : (
+                <>
+                    <RiShareLine size={15} /> share
+                </>
+            )}
         </button>
     );
 };

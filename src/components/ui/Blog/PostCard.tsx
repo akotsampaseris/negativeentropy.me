@@ -49,13 +49,14 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
                 {/* Meta row */}
                 <div className="flex items-center gap-3 text-xs font-mono">
+                    <span className="text-white/80">{dateFormatter(post.publishedAt)}</span>
+                    <span className="text-white/10">—</span>
                     {post.category?.name && (
                         <>
                             <GreenLink href={`/blog?category=${post.category.name}`}>{post.category.name}</GreenLink>
                             <span className="text-white/10">—</span>
                         </>
                     )}
-                    <span className="text-white/30">{dateFormatter(post.publishedAt)}</span>
                     <ShareButton title={post.title} slug={post.slug} />
                 </div>
             </div>
