@@ -1,9 +1,15 @@
-'use client';
+"use client";
 import React, { useState } from "react";
 import Logo from "../../ui/Logo/Logo";
 import NavLink from "../../ui/Nav/NavLink";
 import NavButton from "../../ui/Nav/NavButton";
 import SocialBar from "../../ui/SocialBar/SocialBar";
+
+const navLinks = [
+    { url: "/about", title: "About" },
+    { url: "/blog", title: "Blog" },
+    { url: "/photos", title: "Photos" },
+];
 
 const Header: React.FC = () => {
     const [isNavbarOpen, setNavbarOpen] = useState(false);
@@ -14,37 +20,44 @@ const Header: React.FC = () => {
             {/* Top bar */}
             <div className="flex justify-between items-center">
                 <Logo />
-                <div className="flex items-center gap-4">
+
+                <div className="flex items-center gap-6">
+                    {/* Desktop nav */}
+                    <nav className="hidden sm:flex items-center gap-6">
+                        {navLinks.map((link) => (
+                            <NavLink key={link.url} url={link.url} title={link.title} variant="desktop" />
+                        ))}
+                    </nav>
+
                     <SocialBar />
-                    <NavButton onClickAction={toggleNavbar} isOpen={isNavbarOpen} />
+
+                    {/* Mobile hamburger */}
+                    <div className="sm:hidden">
+                        <NavButton onClickAction={toggleNavbar} isOpen={isNavbarOpen} />
+                    </div>
                 </div>
             </div>
 
-            {/* Dropdown menu */}
+            {/* Mobile dropdown */}
             {isNavbarOpen && (
                 <div
-                    className="w-full mt-4 rounded-lg overflow-hidden border"
+                    className="sm:hidden w-full mt-4 rounded-lg overflow-hidden border"
                     style={{
                         backgroundColor: "#0d0d0d",
                         borderColor: "#4ade8022",
                         boxShadow: "0 0 24px #4ade8011",
-                    }}
-                >
-                    {/* Top accent line */}
+                    }}>
                     <div
                         className="h-px w-full"
                         style={{
                             background: "linear-gradient(to right, transparent, #4ade8055, transparent)",
                         }}
                     />
-
                     <div className="divide-y" style={{ borderColor: "#4ade8011" }}>
-                        <NavLink onClick={toggleNavbar} url="/about" title="About" />
-                        <NavLink onClick={toggleNavbar} url="/blog" title="Blog" />
-                        <NavLink onClick={toggleNavbar} url="/photos" title="Photos" />
+                        {navLinks.map((link) => (
+                            <NavLink key={link.url} url={link.url} title={link.title} onClick={toggleNavbar} variant="mobile" />
+                        ))}
                     </div>
-
-                    {/* Bottom accent line */}
                     <div
                         className="h-px w-full"
                         style={{
