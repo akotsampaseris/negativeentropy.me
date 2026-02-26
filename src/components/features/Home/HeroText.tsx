@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GreenLink } from "../../ui/GreenLink/GreenLink";
+import Link from "next/link";
 
 const ENTROPY_CHARS = "∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≈≉⟁⟂⟃⟇⟈⟉⟊⟋∫∬∭∮∯∰∱∲∳∇∆∂∃∄∅∆∇∈∉∊∋∌∍";
 
@@ -86,10 +86,25 @@ const HeroText: React.FC = () => {
         const content = done ? seg.text : slice;
 
         if (seg.link) {
+            const isExternal = seg.link.startsWith("http") || seg.link.startsWith("mailto");
             return (
-                <GreenLink key={si} href={seg.link}>
+                <Link
+                    key={si}
+                    href={seg.link}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="border-b border-dotted transition-colors duration-200"
+                    style={{ color: "#4ade80", borderColor: "#4ade8055" }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.color = "#86efac";
+                        e.currentTarget.style.borderColor = "#86efac";
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.color = "#4ade80";
+                        e.currentTarget.style.borderColor = "#4ade8055";
+                    }}>
                     {content}
-                </GreenLink>
+                </Link>
             );
         }
 
@@ -105,7 +120,7 @@ const HeroText: React.FC = () => {
     });
 
     return (
-        <p className="text-sm leading-relaxed max-w-xl font-mono" style={{ color: "#9ca3af" }}>
+        <p className="text-sm leading-relaxed w-full max-w-xl font-mono break-words overflow-hidden" style={{ color: "#9ca3af" }}>
             {renderedSegments}
         </p>
     );
