@@ -8,9 +8,10 @@ import SocialBar from "@/components/ui/SocialBar/SocialBar";
 
 const navLinks = [
     { url: "/about", title: "About" },
-    { url: "/blog", title: "Blog" },
+    { url: "/now", title: "Now" },
     { url: "/projects", title: "Projects" },
-    { url: "/photos", title: "Photos" },
+    { url: "/blog", title: "Blog" },
+    // { url: "/photos", title: "Photos" },
 ];
 
 const Header: React.FC = () => {
