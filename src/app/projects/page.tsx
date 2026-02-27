@@ -3,18 +3,20 @@ import { Metadata } from "next";
 import Projects from "@/components/features/Projects/Projects";
 
 export async function generateMetadata(): Promise<Metadata> {
+    const title = "Projects";
+    const description = "A collection of my most recent projects, contributions on open source software, and physics research.";
     const url = "https://negativeentropy.me/projects";
-    const image = "https://negativeentropy.me/full_width_banner.png";
+    const image = "https://negativeentropy.me/symbol_original.png";
 
     return {
-        title: "Projects",
-        description: "A collection of my most recent projects, contributions on open source software, and physics research.",
+        title,
+        description,
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: "Projects",
-            description: "A collection of my most recent projects, contributions on open source software, and physics research.",
+            title,
+            description,
             url,
             siteName: "negativeentropy.me",
             locale: "en_US",
@@ -22,14 +24,14 @@ export async function generateMetadata(): Promise<Metadata> {
             images: [
                 {
                     url: image,
-                    alt: "Projects - negativeentropy.me",
+                    alt: `${title} - negativeentropy.me`,
                 },
             ],
         },
         twitter: {
             card: "summary_large_image",
-            title: "Projects",
-            description: "A collection of my most recent projects, contributions on open source software, and physics research.",
+            title,
+            description,
             images: [image],
         },
     };

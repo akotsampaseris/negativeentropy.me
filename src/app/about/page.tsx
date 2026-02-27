@@ -4,18 +4,20 @@ import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 import { FrequentlyAskedQuestions } from "@/components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
 
 export async function generateMetadata(): Promise<Metadata> {
+    const title = "About";
+    const description = "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.";
     const url = "https://negativeentropy.me/about";
-    const image = "https://negativeentropy.me/full_width_banner.png";
+    const image = "https://negativeentropy.me/symbol_original.png";
 
     return {
-        title: "About me",
-        description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
+        title,
+        description,
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: "About me",
-            description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
+            title,
+            description,
             url,
             siteName: "negativeentropy.me",
             locale: "en_US",
@@ -23,14 +25,14 @@ export async function generateMetadata(): Promise<Metadata> {
             images: [
                 {
                     url: image,
-                    alt: "About me - negativeentropy.me",
+                    alt: `${title} - negativeentropy.me`,
                 },
             ],
         },
         twitter: {
             card: "summary_large_image",
-            title: "About me",
-            description: "Theoretical physicist, software engineer, and hard determinist. The story behind negativeentropy.me.",
+            title,
+            description,
             images: [image],
         },
     };

@@ -37,18 +37,20 @@ async function getPosts(pagination: boolean = true, page: number = 1, postsPerPa
 }
 
 export async function generateMetadata(): Promise<Metadata> {
+    const title = "Blog";
+    const description = "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.";
     const url = "https://negativeentropy.me/blog";
     const image = "https://negativeentropy.me/symbol_original.png";
 
     return {
-        title: "Blog",
-        description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
+        title,
+        description,
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: "Blog",
-            description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
+            title,
+            description,
             url,
             siteName: "negativeentropy.me",
             locale: "en_US",
@@ -56,14 +58,14 @@ export async function generateMetadata(): Promise<Metadata> {
             images: [
                 {
                     url: image,
-                    alt: "Blog - negativeentropy.me",
+                    alt: `${title} - negativeentropy.me`,
                 },
             ],
         },
         twitter: {
             card: "summary_large_image",
-            title: "Blog",
-            description: "Writing on physics, software,  politics, and philosophy. A glimpse into my mind.",
+            title,
+            description,
             images: [image],
         },
     };

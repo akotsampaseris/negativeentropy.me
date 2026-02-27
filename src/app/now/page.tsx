@@ -2,11 +2,40 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
-export const metadata: Metadata = {
-    title: "Now",
-    description: "What Antony Kotsampaseris is focused on right now — location, reading, building, and thinking.",
-    alternates: { canonical: "/now" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const title = "Now";
+    const description = "What Antony Kotsampaseris is focused on right now, including location, reading, building, and thinking.";
+    const url = "https://negativeentropy.me/now";
+    const image = "https://negativeentropy.me/symbol_original.png";
+
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: url,
+        },
+        openGraph: {
+            title,
+            description,
+            url,
+            siteName: "negativeentropy.me",
+            locale: "en_US",
+            authors: ["Antony Kotsampaseris"],
+            images: [
+                {
+                    url: image,
+                    alt: `${title} - negativeentropy.me`,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [image],
+        },
+    };
+}
 
 const lastUpdated = "February 2026";
 
