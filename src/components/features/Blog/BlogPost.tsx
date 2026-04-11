@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import { PortableText } from "@portabletext/react";
 import { PostType } from "@/types/posts";
 import { dateFormatter } from "@/utils/formatter";
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
@@ -35,7 +35,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 <div className="h-px w-16 mt-2" style={{ background: "linear-gradient(to right, #4ade80, transparent)" }} />
             </div>
             <div className="rich-text">
-                <RichText data={post.body} />
+                <PortableText value={post.body} />
             </div>
         </div>
     );

@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 import { PostType } from "@/types/posts";
 import PostCard from "@/components/ui/Blog/PostCard";
@@ -20,7 +18,6 @@ const LatestBlogPosts = ({ posts }: LatestBlogPostsProps) => {
 
     return (
         <div className="py-6">
-            {/* Header — identical to Currently */}
             <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-base font-semibold tracking-[0.2em] uppercase" style={{ color: "#4ade80" }}>
                     Recent Posts
@@ -32,15 +29,11 @@ const LatestBlogPosts = ({ posts }: LatestBlogPostsProps) => {
                     }}
                 />
             </div>
-
-            {/* Post list */}
             <div>
                 {posts.map((post) => (
                     <PostCard key={post.id} post={post} />
                 ))}
             </div>
-
-            {/* View all */}
             <div className="group flex items-center gap-2 pt-4">
                 <GreenLink href="/blog">View all posts</GreenLink>
                 <span className="text-xs transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-1" style={{ color: "#4ade80" }}>

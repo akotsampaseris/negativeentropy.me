@@ -1,37 +1,14 @@
 import { type Metadata } from "next";
 import Blog from "@/components/features/Blog/Blog";
 import { PostType } from "@/types/posts";
+import { client } from "@/sanity/lib/client";
+import { blogPostsQuery, blogPostsByCategoryQuery } from "@/sanity/lib/queries";
 
-interface PostFilters {
-    sort?: string;
-    limit?: number;
-    page?: number;
-    "where[category.name][equals]"?: string;
-}
-
-async function getPosts(pagination: boolean = true, page: number = 1, postsPerPage: number = 5, sortBy: string = "-publishedAt", category?: string) {
-    const apiUrl = process.env.CMS_API_URL;
-    const filters: PostFilters = { sort: sortBy };
-
-    if (pagination) {
-        filters.page = page;
-        filters.limit = postsPerPage;
-    }
-
-    if (category) {
-        filters["where[category.name][equals]"] = category;
-    }
-
-    const fullPath = `${apiUrl}/posts?${Object.entries(filters)
-        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-        .join("&")}`;
-
+async function getPosts(category?: string): Promise<PostType[]> {
     try {
-        const res = await fetch(fullPath, { cache: "no-store" });
-        const data = await res.json();
-        return (data.docs as PostType[]) ?? [];
+        return await client.fetch(category ? blogPostsByCategoryQuery : blogPostsQuery, { category });
     } catch (e) {
-        console.log(e);
+        console.error(e);
         return [];
     }
 }
@@ -77,7 +54,7 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
     const { category } = await searchParams;
-    const posts: PostType[] = await getPosts(false, 1, 5, "-publishedAt", category);
+    const posts: PostType[] = await getPosts(category);
 
     return (
         <div>

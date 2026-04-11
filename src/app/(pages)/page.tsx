@@ -2,23 +2,12 @@ import LatestBlogPosts from "@/components/features/Blog/LatestBlogPost";
 import Currently from "@/components/features/Currently/Currently";
 import { PostType } from "@/types/posts";
 import HeroText from "@/components/features/Home/HeroText";
+import { client } from "@/sanity/lib/client";
+import { latestPostsQuery } from "@/sanity/lib/queries";
 
-async function getLatestPosts() {
-    const apiUrl = process.env.CMS_API_URL;
-    const filters = {
-        sort: "-publishedAt",
-        page: 1,
-        limit: 3,
-    };
-    const fullPath = `${apiUrl}/posts?${Object.entries(filters)
-        .map(([key, value]) => `${key}=${value}`)
-        .join("&")}`;
-
+async function getLatestPosts(): Promise<PostType[]> {
     try {
-        const res = await fetch(fullPath);
-        const data = await res.json();
-        const posts: PostType[] = data.docs;
-        return posts;
+        return await client.fetch(latestPostsQuery);
     } catch (e) {
         console.error(e);
         return [];
@@ -27,7 +16,6 @@ async function getLatestPosts() {
 
 export default async function HomePage() {
     const posts: PostType[] = await getLatestPosts();
-
     return (
         <div className="w-fit space-y-10">
             {/* Intro */}
@@ -35,7 +23,6 @@ export default async function HomePage() {
                 <h1 className="py-2 font-bold tracking-tight text-white">Antony Kotsampaseris</h1>
                 <HeroText />
             </div>
-
             {/* Currently */}
             <Currently />
             {/* Latest Posts */}
