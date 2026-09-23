@@ -5,7 +5,7 @@ const HeroText: React.FC = () => {
         <p className="text-sm leading-relaxed w-full max-w-xl font-mono break-words" style={{ color: "#9ca3af" }}>
             Hey, I am Antony, a <strong className="text-gray-100 font-semibold">theoretical physicist</strong> turned{" "}
             <strong className="text-gray-100 font-semibold">software engineer</strong>. If you catch me daydreaming, I am most likely thinking about{" "}
-            <strong className="text-gray-100 font-semibold">physics</strong>, <strong className="text-gray-100 font-semibold">software</strong>, and{" "}
+            <strong className="text-gray-100 font-semibold">physics</strong>, <strong className="text-gray-100 font-semibold">tech</strong>, and{" "}
             <strong className="text-gray-100 font-semibold">politics</strong>. I write about these topics{" "}
             <GreenLink href="/blog" ariaLabel="Read my blog">
                 in my blog

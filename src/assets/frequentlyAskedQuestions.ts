@@ -7,14 +7,14 @@ export const frequentlyAskedQuestions: FrequentlyAskedQuestionType[] = [
     },
     {
         question: "What's up?",
-        answer: "I am currently working with <strong>Rust</strong>, contributing to <strong>OSS</strong>. I am also exploring deterministic alternatives to <strong>Quantum Theory</strong>.",
+        answer: "I'm currently building edge AI for safer construction sites at Anzen. I'm also exploring deterministic alternatives to <strong>Quantum Theory</strong>.",
     },
     {
         question: "Are you sure?",
-        answer: "Well, I try to be. I think things through and I doubt everything before I support it. And I'm perfectly happy to admit that I've been wrong when it <i>rarely</i> happens.",
+        answer: "Well, I try to be. I think things through and I <strong>doubt</strong> everything before I support it. And I'm perfectly happy to admit that I've been wrong when it <i>rarely</i> happens.",
     },
     {
         question: "How dare you?",
-        answer: "The idea is that we're searching for the truth. So, even if that truth is not popular or nice, we have a duty to make it visible. Of course, this doesn't apply to personal beliefs or preferences. Only to subjects that such truth can exist, eg software, science, etc.",
+        answer: "The idea is that we're searching for the <strong>truth</strong>. So, even if that truth is not popular or nice, we have a duty to make it visible. Of course, this doesn't apply to personal beliefs or preferences. Only to subjects that such truth can exist, eg software, science, etc.",
     },
 ];
