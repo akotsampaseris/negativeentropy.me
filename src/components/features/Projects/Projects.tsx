@@ -171,10 +171,11 @@ function useTypewriter(text: string, animate: boolean, speed: number = 14) {
     return { displayed, done: displayed === text };
 }
 
+// Inline flow so long commands wrap onto the next line on narrow screens
 const Prompt = ({ children }: { children?: React.ReactNode }) => (
-    <div className="flex items-center gap-2 font-mono text-sm min-w-0">
-        <span className="flex-shrink-0" style={{ color: COLORS.accentDim }}>
-            ~/projects $
+    <div className="font-mono text-sm break-words">
+        <span className="whitespace-nowrap" style={{ color: COLORS.accentDim }}>
+            ~/projects ${" "}
         </span>
         {children}
     </div>
@@ -352,14 +353,14 @@ export default function Projects() {
             {/* Terminal window */}
             <div className="rounded-lg overflow-hidden border" style={{ backgroundColor: "#0a0a0a", borderColor: COLORS.border, boxShadow: "0 0 40px #4ade8008" }}>
                 {/* Title bar */}
-                <div className="flex items-center gap-3 px-4 py-2 border-b" style={{ borderColor: "#4ade8015", backgroundColor: "#0d0d0d" }}>
-                    <div className="flex items-center gap-1.5 flex-shrink-0" aria-hidden>
+                <div className="flex items-start gap-3 px-4 py-2 border-b" style={{ borderColor: "#4ade8015", backgroundColor: "#0d0d0d" }}>
+                    <div className="flex items-center gap-1.5 flex-shrink-0 h-4" aria-hidden>
                         <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#4ade8033" }} />
                         <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#4ade8022" }} />
                         <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#4ade8011" }} />
                     </div>
-                    <span className="flex-1 text-center text-xs font-mono truncate" style={{ color: COLORS.accentDim }}>
-                        antony@negativeentropy — portfolio
+                    <span className="flex-1 min-w-0 text-center text-xs leading-4 font-mono break-words" style={{ color: COLORS.accentDim }}>
+                        antony@negativeentropy <span className="whitespace-nowrap">— portfolio</span>
                     </span>
                     <div className="w-10 flex-shrink-0" />
                 </div>
@@ -390,10 +391,16 @@ export default function Projects() {
                 {/* Terminal body */}
                 <div className="px-3 sm:px-5 py-4">
                     <Prompt>
-                        <span className="truncate" style={{ color: COLORS.accent }}>
-                            {displayed}
+                        {/* Keep each word whole so "--filter=…" never splits at its hyphens */}
+                        <span style={{ color: COLORS.accent }}>
+                            {displayed.split(" ").map((word, i) => (
+                                <span key={i}>
+                                    {i > 0 && " "}
+                                    <span className="whitespace-nowrap">{word}</span>
+                                </span>
+                            ))}
                         </span>
-                        {!done && <span className="inline-block w-2 h-4 flex-shrink-0 animate-pulse" style={{ backgroundColor: COLORS.accent }} />}
+                        {!done && <span className="inline-block w-2 h-4 ml-0.5 align-middle animate-pulse" style={{ backgroundColor: COLORS.accent }} />}
                     </Prompt>
 
                     {done && (
@@ -409,7 +416,7 @@ export default function Projects() {
                             </div>
                             <div className="pt-3">
                                 <Prompt>
-                                    <span className="inline-block w-2 h-4 animate-pulse" style={{ backgroundColor: COLORS.accentDim }} />
+                                    <span className="inline-block w-2 h-4 align-middle animate-pulse" style={{ backgroundColor: COLORS.accentDim }} />
                                 </Prompt>
                             </div>
                         </>
