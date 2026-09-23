@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
 import ParticleContainer from "@/components/ui/Particles/ParticleContainer";
@@ -25,6 +26,7 @@ export default function SiteLayout({
                 <Footer />
             </div>
             <Analytics />
+            <SpeedInsights />
         </>
     );
 }

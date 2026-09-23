@@ -10,7 +10,7 @@ Personal website of Antony Kotsampaseris, built with **Next.js** and **Tailwind 
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Content**: [Sanity](https://www.sanity.io/), with the Studio embedded at `/studio`
 - **Hosting**: [Vercel](https://vercel.com/)
-- **Analytics**: [Vercel Analytics](https://vercel.com/docs/analytics)
+- **Analytics**: [Vercel Analytics](https://vercel.com/docs/analytics) and [Speed Insights](https://vercel.com/docs/speed-insights)
 - **Package Manager**: [pnpm](https://pnpm.io/)
 
 ---
