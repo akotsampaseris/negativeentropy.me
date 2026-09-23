@@ -94,3 +94,8 @@ strong {
 .rich-text li {
     margin-bottom: 0.25rem;
 }
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}

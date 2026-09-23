@@ -9,6 +9,7 @@ export const allPostsQuery = groq`
     description,
     publishedAt,
     category-> { _id, name },
+    "readingTime": round(length(pt::text(body)) / 5 / 180),
     body
   }
 `;
@@ -21,6 +22,7 @@ export const postBySlugQuery = groq`
     description,
     publishedAt,
     category-> { _id, name },
+    "readingTime": round(length(pt::text(body)) / 5 / 180),
     body
   }
 `;
@@ -39,7 +41,8 @@ export const latestPostsQuery = groq`
     "slug": slug.current,
     description,
     publishedAt,
-    category-> { _id, name }
+    category-> { _id, name },
+    "readingTime": round(length(pt::text(body)) / 5 / 180)
   }
 `;
 
@@ -50,7 +53,8 @@ export const blogPostsQuery = groq`
     "slug": slug.current,
     description,
     publishedAt,
-    category-> { _id, name }
+    category-> { _id, name },
+    "readingTime": round(length(pt::text(body)) / 5 / 180)
   }
 `;
 
@@ -61,6 +65,30 @@ export const blogPostsByCategoryQuery = groq`
     "slug": slug.current,
     description,
     publishedAt,
-    category-> { _id, name }
+    category-> { _id, name },
+    "readingTime": round(length(pt::text(body)) / 5 / 180)
+  }
+`;
+
+export const sitemapPostsQuery = groq`
+  *[_type == "post" && defined(slug.current)] {
+    "slug": slug.current,
+    publishedAt,
+    "updatedAt": _updatedAt
+  }
+`;
+
+export const nowQuery = groq`
+  *[_type == "now" && _id == "now"][0] {
+    lastUpdated,
+    sections[] {
+      _key,
+      glyph,
+      label,
+      title,
+      body,
+      currentlyLabel,
+      short
+    }
   }
 `;

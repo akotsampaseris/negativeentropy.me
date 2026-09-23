@@ -20,6 +20,9 @@ export const defaultMetadata: Metadata = {
     metadataBase: new URL("https://negativeentropy.me"),
     alternates: {
         canonical: "/",
+        types: {
+            "application/rss+xml": "/feed.xml",
+        },
     },
     openGraph: {
         title: {

@@ -16,7 +16,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
 
     return (
         <div
-            key={post.id}
+            key={post._id}
             className="group relative flex items-stretch py-1 focus-within:[--active:1]"
         >
             {/* Animated left border */}
@@ -62,11 +62,19 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 )}
 
                 {/* Meta row */}
-                <div className="flex items-center gap-3 text-xs font-mono">
+                <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
                     <span className="text-white/80">
                         {dateFormatter(post.publishedAt)}
                     </span>
                     <span className="text-white/10">—</span>
+                    {post.readingTime !== undefined && (
+                        <>
+                            <span className="text-white/60">
+                                {Math.max(1, post.readingTime)} min read
+                            </span>
+                            <span className="text-white/10">—</span>
+                        </>
+                    )}
                     {post.category?.name && (
                         <>
                             <GreenLink

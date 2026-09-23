@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import Script from "next/script";
-import { roboto } from "../fonts";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
 import ParticleContainer from "@/components/ui/Particles/ParticleContainer";

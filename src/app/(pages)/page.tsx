@@ -4,6 +4,9 @@ import { PostType } from "@/types/posts";
 import HeroText from "@/components/features/Home/HeroText";
 import { client } from "@/sanity/lib/client";
 import { latestPostsQuery } from "@/sanity/lib/queries";
+import { formatLastUpdated, getNow } from "@/sanity/lib/now";
+
+export const revalidate = 300;
 
 async function getLatestPosts(): Promise<PostType[]> {
     try {
@@ -15,7 +18,13 @@ async function getLatestPosts(): Promise<PostType[]> {
 }
 
 export default async function HomePage() {
-    const posts: PostType[] = await getLatestPosts();
+    const [posts, now] = await Promise.all([getLatestPosts(), getNow()]);
+    const currentlyItems = (now?.sections ?? [])
+        .filter((section) => section.currentlyLabel)
+        .map((section) => ({ icon: section.glyph, label: section.currentlyLabel!, content: section.short ?? section.title }));
+    if (currentlyItems.length > 0 && now?.lastUpdated) {
+        currentlyItems.push({ icon: "↻", label: "Updated", content: formatLastUpdated(now.lastUpdated) });
+    }
     return (
         <div className="w-fit space-y-10">
             {/* Intro */}
@@ -24,7 +33,7 @@ export default async function HomePage() {
                 <HeroText />
             </div>
             {/* Currently */}
-            <Currently />
+            {currentlyItems.length > 0 && <Currently items={currentlyItems} />}
             {/* Latest Posts */}
             <LatestBlogPosts posts={posts} />
         </div>

@@ -31,7 +31,7 @@ const LatestBlogPosts = ({ posts }: LatestBlogPostsProps) => {
             </div>
             <div>
                 {posts.map((post) => (
-                    <PostCard key={post.id} post={post} />
+                    <PostCard key={post._id} post={post} />
                 ))}
             </div>
             <div className="group flex items-center gap-2 pt-4">

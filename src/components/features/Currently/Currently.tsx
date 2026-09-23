@@ -2,40 +2,23 @@
 
 import { useEffect, useState } from "react";
 
-const currentItems = [
-    {
-        icon: "⟁",
-        label: "Building",
-        content: "Edge AI for safer construction sites",
-        color: "#4ade80",
-    },
-    {
-        icon: "❡",
-        label: "Reading",
-        content: "Speakable and Unspeakable in Quantum Mechanics - John Bell",
-        color: "#4ade80",
-    },
-    {
-        icon: "∿",
-        label: "Exploring",
-        content: "Quantum foundations & superdeterminism",
-        color: "#4ade80",
-    },
-    {
-        icon: "↻",
-        label: "Updated",
-        content: "September 2026",
-        color: "#4ade80",
-    },
-];
+export type CurrentlyItem = {
+    icon: string;
+    label: string;
+    content: string;
+};
 
-const Currently = () => {
+interface CurrentlyProps {
+    items: CurrentlyItem[];
+}
+
+const Currently = ({ items }: CurrentlyProps) => {
     const [visible, setVisible] = useState<boolean[]>(
-        new Array(currentItems.length).fill(false),
+        new Array(items.length).fill(false),
     );
 
     useEffect(() => {
-        currentItems.forEach((_, i) => {
+        items.forEach((_, i) => {
             setTimeout(() => {
                 setVisible((prev) => {
                     const next = [...prev];
@@ -44,7 +27,7 @@ const Currently = () => {
                 });
             }, i * 120);
         });
-    }, []);
+    }, [items]);
 
     return (
         <div className="py-6">
@@ -77,7 +60,7 @@ const Currently = () => {
 
             {/* Items */}
             <div className="space-y-0">
-                {currentItems.map((item, i) => (
+                {items.map((item, i) => (
                     <div
                         key={item.label}
                         className="group relative flex items-stretch transition-all duration-500"

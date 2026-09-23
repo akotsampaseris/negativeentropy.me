@@ -193,14 +193,14 @@ const timelineItems = [
         location: "Rural Greece",
         content: (
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
-                I left Athens for somewhere quieter, where there's more space to
+                I left Athens for somewhere quieter, where there&apos;s more space to
                 think. I adopted{" "}
                 <strong className="text-gray-100 font-semibold">Timos</strong>{" "}
                 there, an elderly English Setter rescued from the wilderness,
                 and I help run the animal volunteering group I co-founded.
-                Work-wise, I'm splitting my time between two very different
-                problems. At Anzen, I'm building edge AI that makes construction
-                sites safer. On the side, I'm researching the foundations of
+                Work-wise, I&apos;m splitting my time between two very different
+                problems. At Anzen, I&apos;m building edge AI that makes construction
+                sites safer. On the side, I&apos;m researching the foundations of
                 quantum mechanics, and whether entanglement could come from
                 something deeper and deterministic.
             </p>

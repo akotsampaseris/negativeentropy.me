@@ -36,7 +36,7 @@ const Blog: React.FC<BlogProps> = ({ posts, activeCategory }) => {
             )}
             <div className="divide-y divide-white/5">
                 {posts.map((post: PostType) => (
-                    <PostCard key={post.id} post={post} />
+                    <PostCard key={post._id} post={post} />
                 ))}
             </div>
         </div>

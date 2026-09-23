@@ -1,16 +1,17 @@
 import type { PortableTextBlock } from "@portabletext/react";
 
 export type PostCategory = {
-    id: number;
+    _id: string;
     name: string;
 };
 
 export type PostType = {
-    id: number;
+    _id: string;
     title: string;
     slug: string;
     description?: string;
     category: PostCategory;
-    body: PortableTextBlock;
+    body: PortableTextBlock[];
     publishedAt: Date;
+    readingTime?: number;
 };
