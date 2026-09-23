@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 
@@ -66,8 +66,8 @@ const PROJECTS: Project[] = [
         id: "negativeentropy-me",
         title: "NegativeEntropy.me",
         description:
-            "This website. A personal blog and portfolio built with Next.js and PayloadCMS, exploring physics, software, and philosophy. Designed with a custom dark aesthetic and entropy-themed animations.",
-        stack: ["Next.js", "TypeScript", "PayloadCMS", "Tailwind"],
+            "This website. A personal blog and portfolio built with Next.js and Sanity, exploring physics, software, and philosophy. Designed with a custom dark aesthetic and entropy-themed animations.",
+        stack: ["Next.js", "TypeScript", "Sanity.io", "Tailwind", "Vercel"],
         status: "completed",
         category: "software",
         links: {
@@ -125,513 +125,294 @@ const PROJECTS: Project[] = [
     },
 ];
 
-const STATUS_SYMBOL: Record<
-    Status,
-    { symbol: string; color: string; label: string }
-> = {
-    "in-progress": { symbol: "◉", color: "#4ade80", label: "in-progress" },
-    completed: { symbol: "✓", color: "#86efac99", label: "completed" },
-    archived: { symbol: "◇", color: "#4ade8044", label: "archived" },
+// Text colors, all at least 4.5:1 on the terminal background
+const COLORS = {
+    accent: "#4ade80",
+    accentDim: "#4ade80b3",
+    accentLight: "#86efac",
+    title: "#e5e7eb",
+    text: "#9ca3af",
+    punctuation: "#6b7280",
+    border: "#4ade8022",
+    borderFaint: "#4ade8011",
 };
 
-const CATEGORY_COMMANDS: Record<string, string> = {
-    all: "ls -la ./projects",
-    software: "ls -la ./projects --filter=software",
-    physics: "ls -la ./projects --filter=physics",
-    "open-source": "ls -la ./projects --filter=open-source",
+const STATUS_SYMBOL: Record<Status, { symbol: string; color: string; label: string }> = {
+    "in-progress": { symbol: "◉", color: COLORS.accent, label: "in progress" },
+    completed: { symbol: "✓", color: COLORS.accentDim, label: "completed" },
+    archived: { symbol: "◇", color: COLORS.text, label: "archived" },
 };
 
-function useTypewriter(
-    text: string,
-    speed: number = 18,
-    startDelay: number = 0,
-) {
-    const [displayed, setDisplayed] = useState("");
-    const [done, setDone] = useState(false);
+const CATEGORIES: Category[] = ["all", "software", "physics", "open-source"];
+
+const commandFor = (category: Category) => (category === "all" ? "ls ./projects" : `ls ./projects --filter=${category}`);
+
+const prefersReducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Types out `text` once when `animate` is true; otherwise shows it immediately.
+function useTypewriter(text: string, animate: boolean, speed: number = 14) {
+    const [displayed, setDisplayed] = useState(animate ? "" : text);
 
     useEffect(() => {
+        if (!animate) {
+            setDisplayed(text);
+            return;
+        }
         setDisplayed("");
-        setDone(false);
         let i = 0;
-        const timeout = setTimeout(() => {
-            const interval = setInterval(() => {
-                i++;
-                setDisplayed(text.slice(0, i));
-                if (i >= text.length) {
-                    setDone(true);
-                    clearInterval(interval);
-                }
-            }, speed);
-            return () => clearInterval(interval);
-        }, startDelay);
-        return () => clearTimeout(timeout);
-    }, [text, speed, startDelay]);
+        const interval = setInterval(() => {
+            i++;
+            setDisplayed(text.slice(0, i));
+            if (i >= text.length) clearInterval(interval);
+        }, speed);
+        return () => clearInterval(interval);
+    }, [text, animate, speed]);
 
-    return { displayed, done };
+    return { displayed, done: displayed === text };
 }
 
-const TerminalPrompt = ({
-    command,
-    delay = 0,
-    onDone,
-}: {
-    command: string;
-    delay?: number;
-    onDone?: () => void;
-}) => {
-    const { displayed, done } = useTypewriter(command, 22, delay);
+const Prompt = ({ children }: { children?: React.ReactNode }) => (
+    <div className="flex items-center gap-2 font-mono text-sm min-w-0">
+        <span className="flex-shrink-0" style={{ color: COLORS.accentDim }}>
+            ~/projects $
+        </span>
+        {children}
+    </div>
+);
 
-    useEffect(() => {
-        if (done && onDone) onDone();
-    }, [done, onDone]);
+const PublicationBlock = ({ pub }: { pub: Publication }) => {
+    type Field = { key: string; value: React.ReactNode };
+    const candidates: (Field | null)[] = [
+        pub.coAuthors?.length ? { key: "authors", value: pub.coAuthors.join(" and ") } : null,
+        pub.journal ? { key: "journal", value: pub.journal } : null,
+        pub.volume ? { key: "volume", value: pub.volume } : null,
+        pub.pages ? { key: "pages", value: pub.pages } : null,
+        pub.doi
+            ? {
+                  key: "doi",
+                  value: (
+                      <GreenLink href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer">
+                          {pub.doi}
+                      </GreenLink>
+                  ),
+              }
+            : null,
+        pub.preprint ? { key: "preprint", value: pub.preprint } : null,
+    ];
+    const fields = candidates.filter((f): f is Field => f !== null);
 
     return (
-        <div className="flex items-center gap-2 font-mono text-sm">
-            <span style={{ color: "#4ade8066" }}>~/projects</span>
-            <span style={{ color: "#4ade8044" }}>$</span>
-            <span style={{ color: "#4ade80" }}>{displayed}</span>
-            {!done && (
-                <span
-                    className="inline-block w-2 h-4 animate-pulse"
-                    style={{ backgroundColor: "#4ade80" }}
-                />
-            )}
+        <div className="text-xs font-mono p-3 rounded-sm space-y-1.5 overflow-x-auto" style={{ backgroundColor: "#4ade8008", border: `1px solid ${COLORS.border}` }}>
+            {fields.map(({ key, value }) => (
+                <div key={key} className="grid grid-cols-[4.5rem_1fr] gap-2">
+                    <span style={{ color: COLORS.accentDim }}>{key}</span>
+                    <span className="break-words" style={{ color: COLORS.accentLight }}>
+                        {value}
+                    </span>
+                </div>
+            ))}
         </div>
     );
 };
 
-const PublicationBlock = ({ pub, id }: { pub: Publication; id: string }) => (
-    <div className="space-y-1">
-        <div
-            className="flex items-center gap-2 text-xs"
-            style={{ color: "#4ade8055" }}
-        >
-            <span>$</span>
-            <span>cat {id}/publication.bib</span>
-        </div>
-        <div
-            className="text-xs font-mono space-y-1 p-3 rounded-sm"
-            style={{
-                backgroundColor: "#4ade8008",
-                border: "1px solid #4ade8018",
-            }}
-        >
-            {pub.coAuthors && pub.coAuthors.length > 0 && (
-                <div className="flex gap-2">
-                    <span style={{ color: "#4ade8055" }}>authors</span>
-                    <span style={{ color: "#9ca3af" }}>=</span>
-                    <span style={{ color: "#86efac99" }}>
-                        {"{"}
-                        {pub.coAuthors.join(" and ")}
-                        {"}"}
-                    </span>
-                </div>
-            )}
-            {pub.journal && (
-                <div className="flex gap-2">
-                    <span style={{ color: "#4ade8055" }}>journal</span>
-                    <span style={{ color: "#9ca3af" }}>=</span>
-                    <span style={{ color: "#86efac99" }}>
-                        {"{" + pub.journal + "}"}
-                    </span>
-                </div>
-            )}
-            {pub.volume && (
-                <div className="flex gap-2">
-                    <span style={{ color: "#4ade8055" }}>volume </span>
-                    <span style={{ color: "#9ca3af" }}>=</span>
-                    <span style={{ color: "#86efac99" }}>
-                        {"{" + pub.volume + "}"}
-                    </span>
-                </div>
-            )}
-            {pub.pages && (
-                <div className="flex gap-2">
-                    <span style={{ color: "#4ade8055" }}>pages </span>
-                    <span style={{ color: "#9ca3af" }}>=</span>
-                    <span style={{ color: "#86efac99" }}>
-                        {"{" + pub.pages + "}"}
-                    </span>
-                </div>
-            )}
-            {pub.doi && (
-                <div className="flex gap-2">
-                    <span style={{ color: "#4ade8055" }}>doi </span>
-                    <span style={{ color: "#9ca3af" }}>=</span>
-                    <GreenLink
-                        href={`https://doi.org/${pub.doi}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        {" "}
-                        {"{" + pub.doi + "}"}
-                    </GreenLink>
-                </div>
-            )}
-            {pub.preprint && (
-                <div className="flex gap-2">
-                    <span style={{ color: "#4ade8055" }}>preprint</span>
-                    <span style={{ color: "#9ca3af" }}>=</span>
-                    <span style={{ color: "#86efac99" }}>
-                        {"{" + pub.preprint + "}"}
-                    </span>
-                </div>
-            )}
-        </div>
-    </div>
-);
+const ProjectLinks = ({ links }: { links: Project["links"] }) => {
+    const items = [
+        { label: "github", href: links.github },
+        { label: "live", href: links.live },
+        { label: "paper", href: links.paper },
+    ].filter((l): l is { label: string; href: string } => !!l.href);
 
-const ProjectEntry = ({
-    project,
-    index,
-    visible,
-}: {
-    project: Project;
-    index: number;
-    visible: boolean;
-}) => {
-    const [expanded, setExpanded] = useState(false);
-    const status = STATUS_SYMBOL[project.status];
+    if (items.length === 0) return null;
 
     return (
-        <div
-            className="transition-all duration-300 font-mono"
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono">
+            {items.map((item) => (
+                <GreenLink key={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.label} ⟶
+                </GreenLink>
+            ))}
+        </div>
+    );
+};
+
+const ProjectEntry = ({ project, index, animate }: { project: Project; index: number; animate: boolean }) => {
+    const [expanded, setExpanded] = useState(false);
+    const [visible, setVisible] = useState(!animate);
+    const status = STATUS_SYMBOL[project.status];
+    const detailsId = `${project.id}-details`;
+    const meta = [project.year, project.category as string, project.publication?.journal ?? status.label];
+
+    useEffect(() => {
+        if (!animate) return;
+        const timeout = setTimeout(() => setVisible(true), index * 60);
+        return () => clearTimeout(timeout);
+    }, [animate, index]);
+
+    return (
+        <article
+            className="group py-4 border-b last:border-b-0 transition-all duration-300"
             style={{
+                borderColor: COLORS.borderFaint,
                 opacity: visible ? 1 : 0,
-                transform: visible ? "translateX(0)" : "translateX(-6px)",
-                transitionDelay: `${index * 60}ms`,
+                transform: visible ? "none" : "translateX(-6px)",
             }}
         >
-            {/* Main row */}
-            <button
-                onClick={() => setExpanded(!expanded)}
-                className="w-full text-left group flex items-start gap-3 py-1.5 hover:bg-white/[0.02] rounded transition-colors duration-150 px-1"
-            >
-                <span
-                    className="flex-shrink-0 mt-0.5 text-xs"
-                    style={{ color: status.color }}
-                >
-                    {status.symbol}
-                </span>
-                <span
-                    className="flex-shrink-0 text-xs"
-                    style={{ color: "#4ade8033" }}
-                >
-                    {project.category as string}
-                </span>
-                <span
-                    className="flex-shrink-0 text-xs w-10 text-right"
-                    style={{ color: "#4ade8033" }}
-                >
-                    {project.year}
-                </span>
-                <span
-                    className="text-sm flex-1 transition-colors duration-150"
-                    style={{ color: expanded ? "#86efac" : "#e5e7eb" }}
-                >
-                    {project.title}
-                </span>
-                <span
-                    className="flex-shrink-0 text-xs transition-all duration-200"
-                    style={{
-                        color: "#4ade8055",
-                        transform: expanded ? "rotate(90deg)" : "none",
-                    }}
-                >
-                    ▶
-                </span>
+            <button onClick={() => setExpanded(!expanded)} aria-expanded={expanded} aria-controls={detailsId} className="w-full text-left space-y-1.5 cursor-pointer">
+                {/* Title */}
+                <div className="flex items-start gap-3">
+                    <span className="flex-shrink-0 w-4 text-sm font-mono leading-[1.4rem]" style={{ color: status.color }} title={status.label}>
+                        {status.symbol}
+                    </span>
+                    {/* Inline sizes: the global h2 rule in globals.css would otherwise override Tailwind classes */}
+                    <h2
+                        className="flex-1 min-w-0 font-mono transition-colors duration-150 group-hover:text-white"
+                        style={{ color: expanded ? COLORS.accentLight : COLORS.title, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4, padding: 0 }}
+                    >
+                        {project.title}
+                    </h2>
+                </div>
+
+                {/* Meta */}
+                <div className="pl-7 flex flex-wrap items-center gap-x-2 text-xs font-mono" style={{ color: COLORS.text }}>
+                    {meta.map((item, i) => (
+                        <span key={i} className="flex items-center gap-2">
+                            {i > 0 && <span style={{ color: COLORS.punctuation }}>·</span>}
+                            {item}
+                        </span>
+                    ))}
+                </div>
+
+                {/* Description: two lines collapsed, full when expanded */}
+                <p className={`pl-7 text-sm leading-relaxed ${expanded ? "" : "line-clamp-2"}`} style={{ color: COLORS.text }}>
+                    {project.description}
+                </p>
             </button>
+
+            {/* Links and details toggle */}
+            <div className="pl-7 pt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+                <ProjectLinks links={project.links} />
+                <button onClick={() => setExpanded(!expanded)} aria-expanded={expanded} aria-controls={detailsId} className="text-xs font-mono cursor-pointer hover:underline" style={{ color: COLORS.accentDim }}>
+                    {expanded ? "[−] less" : "[+] details"}
+                </button>
+            </div>
 
             {/* Expanded details */}
             {expanded && (
-                <div
-                    className="ml-6 mt-1 mb-3 space-y-3 border-l pl-4"
-                    style={{ borderColor: "#4ade8022" }}
-                >
-                    {/* Description */}
-                    <div className="space-y-1">
-                        <div
-                            className="flex items-center gap-2 text-xs"
-                            style={{ color: "#4ade8055" }}
-                        >
-                            <span>$</span>
-                            <span>cat {project.id}/README.md</span>
-                        </div>
-                        <p
-                            className="text-sm leading-relaxed"
-                            style={{ color: "#9ca3af" }}
-                        >
-                            {project.description}
-                        </p>
-                    </div>
-
-                    {/* Publication block — only for physics */}
-                    {project.publication && (
-                        <PublicationBlock
-                            pub={project.publication}
-                            id={project.id}
-                        />
-                    )}
-
-                    {/* Stack */}
+                <div id={detailsId} className="pl-7 pt-4 space-y-4">
+                    {project.publication && <PublicationBlock pub={project.publication} />}
                     {project.stack && (
-                        <div className="space-y-1">
-                            <div
-                                className="flex items-center gap-2 text-xs"
-                                style={{ color: "#4ade8055" }}
-                            >
-                                <span>$</span>
-                                <span>cat {project.id}/.stack</span>
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                                {project.stack.map((tech) => (
-                                    <span
-                                        key={tech}
-                                        className="text-xs px-2 py-0.5 rounded-sm"
-                                        style={{
-                                            color: "#4ade8088",
-                                            backgroundColor: "#4ade8011",
-                                            border: "1px solid #4ade8022",
-                                        }}
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Status */}
-                    <div className="flex items-center gap-2 text-xs">
-                        <span style={{ color: "#4ade8055" }}>
-                            $ echo $STATUS
-                        </span>
-                        <span style={{ color: status.color }}>
-                            {status.symbol} {status.label}
-                        </span>
-                    </div>
-
-                    {/* Links */}
-                    {Object.keys(project.links).length > 0 && (
-                        <div className="space-y-1">
-                            <div
-                                className="text-xs"
-                                style={{ color: "#4ade8055" }}
-                            >
-                                $ ls {project.id}/links/
-                            </div>
-                            <div className="flex flex-wrap gap-4">
-                                {project.links.github && (
-                                    <GreenLink
-                                        href={project.links.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        github.lnk <span>⟶</span>
-                                    </GreenLink>
-                                )}
-                                {project.links.live && (
-                                    <GreenLink
-                                        href={project.links.live}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        live.lnk <span>⟶</span>
-                                    </GreenLink>
-                                )}
-                                {project.links.paper && (
-                                    <GreenLink
-                                        href={project.links.paper}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        paper.lnk <span>⟶</span>
-                                    </GreenLink>
-                                )}
-                            </div>
+                        <div className="flex flex-wrap gap-2">
+                            {project.stack.map((tech) => (
+                                <span
+                                    key={tech}
+                                    className="text-xs font-mono px-2 py-0.5 rounded-sm"
+                                    style={{ color: COLORS.accentDim, backgroundColor: COLORS.borderFaint, border: `1px solid ${COLORS.border}` }}
+                                >
+                                    {tech}
+                                </span>
+                            ))}
                         </div>
                     )}
                 </div>
             )}
-        </div>
+        </article>
     );
 };
 
 export default function Projects() {
     const [activeCategory, setActiveCategory] = useState<Category>("all");
-    const [commandDone, setCommandDone] = useState(false);
-    const [projectsVisible, setProjectsVisible] = useState(false);
-
-    const filtered = PROJECTS.filter(
-        (p) => activeCategory === "all" || p.category === activeCategory,
-    );
-
-    const command = CATEGORY_COMMANDS[activeCategory];
+    // The intro animation plays once on first load; switching tabs is instant.
+    const [animateIntro, setAnimateIntro] = useState(true);
 
     useEffect(() => {
-        setCommandDone(false);
-        setProjectsVisible(false);
-    }, [activeCategory]);
+        if (prefersReducedMotion()) setAnimateIntro(false);
+    }, []);
+
+    const command = commandFor(activeCategory);
+    const { displayed, done } = useTypewriter(command, animateIntro);
+    const filtered = PROJECTS.filter((p) => activeCategory === "all" || p.category === activeCategory);
+    const countFor = (category: Category) => PROJECTS.filter((p) => category === "all" || p.category === category).length;
+
+    const selectCategory = (category: Category) => {
+        setAnimateIntro(false);
+        setActiveCategory(category);
+    };
 
     return (
         <div className="w-full max-w-2xl space-y-8">
             {/* Header */}
             <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tight text-white">
-                    Projects
-                </h1>
-                <p className="text-sm font-mono" style={{ color: "#4ade8066" }}>
-                    A selection of things I have built, researched, and
-                    contributed to.
+                <h1 className="text-3xl font-bold tracking-tight text-white">Projects</h1>
+                <p className="text-sm font-mono" style={{ color: COLORS.accentDim }}>
+                    A selection of things I have built, researched, and contributed to.
                 </p>
-                <div
-                    className="h-px w-24"
-                    style={{
-                        background:
-                            "linear-gradient(to right, #4ade80, transparent)",
-                    }}
-                />
+                <div className="h-px w-24" style={{ background: "linear-gradient(to right, #4ade80, transparent)" }} />
             </div>
 
             {/* Terminal window */}
-            <div
-                className="rounded-lg overflow-hidden border"
-                style={{
-                    backgroundColor: "#0a0a0a",
-                    borderColor: "#4ade8022",
-                    boxShadow: "0 0 40px #4ade8008",
-                }}
-            >
+            <div className="rounded-lg overflow-hidden border" style={{ backgroundColor: "#0a0a0a", borderColor: COLORS.border, boxShadow: "0 0 40px #4ade8008" }}>
                 {/* Title bar */}
-                <div
-                    className="flex items-center justify-between px-4 py-2 border-b"
-                    style={{
-                        borderColor: "#4ade8015",
-                        backgroundColor: "#0d0d0d",
-                    }}
-                >
-                    <div className="flex items-center gap-1.5">
-                        <span
-                            className="w-2.5 h-2.5 rounded-full"
-                            style={{ backgroundColor: "#4ade8033" }}
-                        />
-                        <span
-                            className="w-2.5 h-2.5 rounded-full"
-                            style={{ backgroundColor: "#4ade8022" }}
-                        />
-                        <span
-                            className="w-2.5 h-2.5 rounded-full"
-                            style={{ backgroundColor: "#4ade8011" }}
-                        />
+                <div className="flex items-center gap-3 px-4 py-2 border-b" style={{ borderColor: "#4ade8015", backgroundColor: "#0d0d0d" }}>
+                    <div className="flex items-center gap-1.5 flex-shrink-0" aria-hidden>
+                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#4ade8033" }} />
+                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#4ade8022" }} />
+                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "#4ade8011" }} />
                     </div>
-                    <span
-                        className="text-xs font-mono"
-                        style={{ color: "#4ade8044" }}
-                    >
+                    <span className="flex-1 text-center text-xs font-mono truncate" style={{ color: COLORS.accentDim }}>
                         antony@negativeentropy — portfolio
                     </span>
-                    <div className="w-12" />
+                    <div className="w-10 flex-shrink-0" />
                 </div>
 
                 {/* Category tabs */}
-                <div
-                    className="flex items-center gap-1 px-4 py-2 border-b overflow-x-auto"
-                    style={{ borderColor: "#4ade8011" }}
-                >
-                    {(
-                        [
-                            "all",
-                            "software",
-                            "physics",
-                            "open-source",
-                        ] as Category[]
-                    ).map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => setActiveCategory(cat)}
-                            className="text-xs font-mono tracking-widest px-3 py-1 rounded-sm transition-all duration-200 whitespace-nowrap"
-                            style={{
-                                color:
-                                    activeCategory === cat
-                                        ? "#4ade80"
-                                        : "#4ade8044",
-                                backgroundColor:
-                                    activeCategory === cat
-                                        ? "#4ade8011"
-                                        : "transparent",
-                                border:
-                                    activeCategory === cat
-                                        ? "1px solid #4ade8033"
-                                        : "1px solid transparent",
-                            }}
-                        >
-                            ./{cat}
-                        </button>
-                    ))}
+                <div className="flex flex-wrap items-center gap-1 px-3 sm:px-4 py-2 border-b" style={{ borderColor: COLORS.borderFaint }} role="tablist">
+                    {CATEGORIES.map((cat) => {
+                        const active = activeCategory === cat;
+                        return (
+                            <button
+                                key={cat}
+                                role="tab"
+                                aria-selected={active}
+                                onClick={() => selectCategory(cat)}
+                                className="text-xs font-mono px-2.5 py-1 rounded-sm transition-colors duration-200 whitespace-nowrap cursor-pointer hover:text-white"
+                                style={{
+                                    color: active ? COLORS.accent : COLORS.text,
+                                    backgroundColor: active ? COLORS.borderFaint : "transparent",
+                                    border: `1px solid ${active ? "#4ade8033" : "transparent"}`,
+                                }}
+                            >
+                                ./{cat} <span style={{ color: active ? COLORS.accentDim : COLORS.punctuation }}>{countFor(cat)}</span>
+                            </button>
+                        );
+                    })}
                 </div>
 
                 {/* Terminal body */}
-                <div className="p-4 space-y-4">
-                    <TerminalPrompt
-                        command={command}
-                        delay={0}
-                        onDone={() => {
-                            setCommandDone(true);
-                            setTimeout(() => setProjectsVisible(true), 200);
-                        }}
-                    />
+                <div className="px-3 sm:px-5 py-4">
+                    <Prompt>
+                        <span className="truncate" style={{ color: COLORS.accent }}>
+                            {displayed}
+                        </span>
+                        {!done && <span className="inline-block w-2 h-4 flex-shrink-0 animate-pulse" style={{ backgroundColor: COLORS.accent }} />}
+                    </Prompt>
 
-                    {commandDone && (
-                        <div
-                            className="text-xs font-mono grid gap-x-3 pb-1 border-b"
-                            style={{
-                                color: "#4ade8044",
-                                borderColor: "#4ade8011",
-                                gridTemplateColumns: "16px 80px 40px 1fr 20px",
-                            }}
-                        >
-                            <span>st</span>
-                            <span>category</span>
-                            <span className="text-right">year</span>
-                            <span>name</span>
-                            <span />
-                        </div>
-                    )}
+                    {done && (
+                        <>
+                            <div className="pt-2">
+                                {filtered.map((project, i) => (
+                                    <ProjectEntry key={project.id} project={project} index={i} animate={animateIntro} />
+                                ))}
+                            </div>
 
-                    {commandDone && (
-                        <div className="space-y-0.5">
-                            {filtered.map((project, i) => (
-                                <ProjectEntry
-                                    key={project.id}
-                                    project={project}
-                                    index={i}
-                                    visible={projectsVisible}
-                                />
-                            ))}
-                        </div>
-                    )}
-
-                    {commandDone && (
-                        <div
-                            className="text-xs font-mono pt-2"
-                            style={{ color: "#4ade8033" }}
-                        >
-                            {filtered.length} result
-                            {filtered.length !== 1 ? "s" : ""}
-                        </div>
-                    )}
-
-                    {commandDone && (
-                        <div className="flex items-center gap-2 font-mono text-sm">
-                            <span style={{ color: "#4ade8066" }}>
-                                ~/projects
-                            </span>
-                            <span style={{ color: "#4ade8044" }}>$</span>
-                            <span
-                                className="inline-block w-2 h-4 animate-pulse"
-                                style={{ backgroundColor: "#4ade8044" }}
-                            />
-                        </div>
+                            <div className="pt-3 text-xs font-mono" style={{ color: COLORS.text }}>
+                                {filtered.length} result{filtered.length !== 1 ? "s" : ""}
+                            </div>
+                            <div className="pt-3">
+                                <Prompt>
+                                    <span className="inline-block w-2 h-4 animate-pulse" style={{ backgroundColor: COLORS.accentDim }} />
+                                </Prompt>
+                            </div>
+                        </>
                     )}
                 </div>
             </div>
