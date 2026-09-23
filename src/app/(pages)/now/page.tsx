@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 import { formatLastUpdated, getNow } from "@/sanity/lib/now";
 
-export const revalidate = 300;
+// Fallback only; the Sanity webhook (api/revalidate) refreshes this page on publish
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
     const title = "Now";

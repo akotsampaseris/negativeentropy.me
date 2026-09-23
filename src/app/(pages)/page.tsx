@@ -6,7 +6,8 @@ import { client } from "@/sanity/lib/client";
 import { latestPostsQuery } from "@/sanity/lib/queries";
 import { formatLastUpdated, getNow } from "@/sanity/lib/now";
 
-export const revalidate = 300;
+// Fallback only; the Sanity webhook (api/revalidate) refreshes this page on publish
+export const revalidate = 3600;
 
 async function getLatestPosts(): Promise<PostType[]> {
     try {
