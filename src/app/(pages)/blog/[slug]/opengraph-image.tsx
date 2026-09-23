@@ -48,7 +48,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
                 {/* Site label */}
                 <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                     <div style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: green, boxShadow: `0 0 16px ${green}` }} />
-                    <div style={{ fontSize: 28, letterSpacing: 6, textTransform: "uppercase", color: green, fontFamily: "monospace" }}>{siteName}</div>
+                    <div style={{ fontSize: 28, letterSpacing: 3, color: green, fontFamily: "monospace" }}>{siteName}</div>
                 </div>
 
                 {/* Title */}
