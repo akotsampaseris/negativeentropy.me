@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
@@ -11,16 +10,11 @@ export default function SiteLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const environment = process.env.ENV ?? "dev";
-    const analyticsHostUrl = process.env.ANALYTICS_HOST_URL ?? null;
-    const analyticsWebsiteId = process.env.ANALYTICS_WEBSITE_ID ?? null;
-
     return (
         <>
             <head>
                 <style>{`body { background-color: #121212; color: #ccc; }`}</style>
             </head>
-            {environment === "prod" && analyticsHostUrl && analyticsWebsiteId && <Script src={analyticsHostUrl} data-website-id={analyticsWebsiteId} strategy="afterInteractive" />}
             <ParticleContainer />
             <div className="z-10 text-left px-6">
                 <Header />

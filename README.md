@@ -10,7 +10,7 @@ Personal website of Antony Kotsampaseris, built with **Next.js** and **Tailwind 
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Content**: [Sanity](https://www.sanity.io/), with the Studio embedded at `/studio`
 - **Hosting**: [Vercel](https://vercel.com/)
-- **Analytics**: [Vercel Analytics](https://vercel.com/docs/analytics), plus optional [Umami](https://github.com/umami-software/umami)
+- **Analytics**: [Vercel Analytics](https://vercel.com/docs/analytics)
 - **Package Manager**: [pnpm](https://pnpm.io/)
 
 ---
@@ -33,9 +33,6 @@ Create a `.env` file in the project root:
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Yes | Sanity project ID |
 | `NEXT_PUBLIC_SANITY_DATASET` | Yes | Sanity dataset, e.g. `production` |
 | `SANITY_REVALIDATE_SECRET` | In production | Shared secret for the Sanity revalidation webhook |
-| `ENV` | No | Set to `prod` to enable analytics |
-| `ANALYTICS_HOST_URL` | No | URL of the Umami tracking script |
-| `ANALYTICS_WEBSITE_ID` | No | Umami website ID |
 
 The Sanity project ID and dataset are public by design, since the Studio runs in the browser. Never give a secret the `NEXT_PUBLIC_` prefix, because Next.js inlines those values into the client bundle.
 
