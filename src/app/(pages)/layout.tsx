@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
 import ParticleContainer from "@/components/ui/Particles/ParticleContainer";
@@ -29,6 +30,7 @@ export default function SiteLayout({
                 </main>
                 <Footer />
             </div>
+            <Analytics />
         </>
     );
 }
