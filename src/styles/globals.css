@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .content {
-    max-width: 680px;
+    max-width: 680;
     margin: 0 auto;
 }
 
@@ -93,9 +93,4 @@ strong {
 
 .rich-text li {
     margin-bottom: 0.25rem;
-}
-@media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-    }
 }
