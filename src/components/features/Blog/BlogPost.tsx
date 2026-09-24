@@ -65,9 +65,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ post }) => {
                 {/* Bottom accent line */}
                 <div className="h-px w-16 mt-2" style={{ background: "linear-gradient(to right, #4ade80, transparent)" }} />
             </div>
-            <div className={showToc ? "lg:grid lg:grid-cols-[minmax(0,1fr)_14rem] lg:gap-12 space-y-6 lg:space-y-0" : undefined}>
+            <div className={showToc ? "space-y-6 xl:space-y-0" : undefined}>
+                {/* On xl screens the table of contents sits in the empty space right of the 680px column */}
                 {showToc && (
-                    <aside className="lg:order-last">
+                    <aside className="xl:absolute xl:top-0 xl:bottom-0 xl:left-full xl:ml-10 xl:w-52">
                         <TableOfContents headings={headings} />
                     </aside>
                 )}

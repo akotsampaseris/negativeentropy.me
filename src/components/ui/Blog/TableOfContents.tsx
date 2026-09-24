@@ -53,7 +53,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
     return (
         <>
             {/* Mobile / narrow: collapsible, above the post */}
-            <details className="lg:hidden group rounded-lg border border-[#4ade8022] px-4 py-3">
+            <details className="xl:hidden group rounded-lg border border-[#4ade8022] px-4 py-3">
                 <summary className="flex items-center justify-between cursor-pointer list-none select-none">
                     {label}
                     <span className="text-[#4ade80] font-mono text-sm transition-transform duration-200 group-open:rotate-90">›</span>
@@ -62,7 +62,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
             </details>
 
             {/* Desktop: sticky sidebar */}
-            <nav className="hidden lg:block sticky top-8 space-y-4">
+            <nav className="hidden xl:block sticky top-8 space-y-4">
                 {label}
                 <div className="border-l border-white/5">{links}</div>
             </nav>

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+.content {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
 h1 {
     font-size: 2rem;
     font-weight: 900;

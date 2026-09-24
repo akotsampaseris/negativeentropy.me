@@ -19,7 +19,7 @@ export default function SiteLayout({
             <ParticleContainer />
             <div className="z-10 text-left px-6">
                 <Header />
-                <main className="py-4 rounded-lg bg-[rgba(18,18,18,0.6)]">
+                <main className="content relative py-4 rounded-lg bg-[rgba(18,18,18,0.6)]">
                     <Breadcrumbs />
                     {children}
                 </main>

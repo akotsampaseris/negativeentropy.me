@@ -11,10 +11,10 @@ interface MasonryGridProps {
 const TILE_WIDTHS = [320, 480, 640, 960, 1280];
 
 // Column layouts rendered for each breakpoint; CSS shows exactly one, so there is no layout jump on load.
+// The content column is at most 680px wide, so tiles never exceed ~220px on larger screens.
 const LAYOUTS = [
     { columns: 2, className: "flex md:hidden", sizes: "50vw" },
-    { columns: 3, className: "hidden md:flex xl:hidden", sizes: "33vw" },
-    { columns: 4, className: "hidden xl:flex", sizes: "25vw" },
+    { columns: 3, className: "hidden md:flex", sizes: "220px" },
 ];
 
 // Greedily place each photo in the currently shortest column. Appending photos never moves existing ones.
