@@ -18,6 +18,8 @@ const pathsFor = ({ _type, slug }: WebhookPayload): string[] => {
             return ["/", "/blog", "/sitemap.xml", "/feed.xml", ...(slug ? [`/blog/${slug}`] : [])];
         case "postCategory":
             return ["/", "/blog", "/feed.xml"];
+        case "photo":
+            return ["/photos"];
         default:
             return [];
     }

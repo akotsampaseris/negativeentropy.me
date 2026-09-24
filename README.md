@@ -44,8 +44,9 @@ All content is edited in the Studio at `/studio`:
 
 - **Posts** and **Post Categories** power `/blog`.
 - **Now** is a single document that powers `/now` and the "Currently" block on the home page. Give a section a *Currently Label* to show it on the home page.
+- **Photos** power `/photos`, newest first. Each has an image and an optional description and location.
 
-Pages are cached and refreshed on demand. A Sanity webhook calls `/api/revalidate` whenever a post, category, or the Now document is published, changed, or deleted, and that route refreshes only the affected pages. As a fallback, pages also refresh on a timer (at most every hour).
+Pages are cached and refreshed on demand. A Sanity webhook calls `/api/revalidate` whenever a post, category, photo, or the Now document is published, changed, or deleted, and that route refreshes only the affected pages. As a fallback, pages also refresh on a timer (at most every hour).
 
 The webhook is configured in the Sanity dashboard under **API → Webhooks**, and uses the same secret as `SANITY_REVALIDATE_SECRET`.
 

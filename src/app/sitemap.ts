@@ -19,7 +19,7 @@ async function getPosts(): Promise<SitemapPost[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getPosts();
 
-    const pages: MetadataRoute.Sitemap = ["", "/about", "/now", "/projects", "/blog"].map((path) => ({
+    const pages: MetadataRoute.Sitemap = ["", "/about", "/now", "/projects", "/blog", "/photos"].map((path) => ({
         url: `${siteUrl}${path}`,
         changeFrequency: path === "/blog" || path === "/now" ? "weekly" : "monthly",
         priority: path === "" ? 1 : 0.8,

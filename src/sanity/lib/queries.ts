@@ -92,3 +92,22 @@ export const nowQuery = groq`
     }
   }
 `;
+
+// Keyset pagination: newest first, with _id as a tiebreaker for identical timestamps.
+// Pass $createdAt = null for the first page. Fetches one extra to know if there are more.
+export const photosQuery = groq`
+  *[_type == "photo" && defined(image.asset)
+    && ($createdAt == null || _createdAt < $createdAt || (_createdAt == $createdAt && _id < $id))
+  ] | order(_createdAt desc, _id desc) [0...$limit] {
+    _id,
+    _createdAt,
+    description,
+    location,
+    "url": image.asset->url,
+    "width": image.asset->metadata.dimensions.width,
+    "height": image.asset->metadata.dimensions.height,
+    "lqip": image.asset->metadata.lqip
+  }
+`;
+
+export const photoCountQuery = groq`count(*[_type == "photo" && defined(image.asset)])`;

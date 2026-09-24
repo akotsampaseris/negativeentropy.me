@@ -11,7 +11,7 @@ const navLinks = [
     { url: "/now", title: "Now" },
     { url: "/projects", title: "Projects" },
     { url: "/blog", title: "Blog" },
-    // { url: "/photos", title: "Photos" },
+    { url: "/photos", title: "Photos" },
 ];
 
 const Header: React.FC = () => {
