@@ -13,9 +13,8 @@ export default function SiteLayout({
 }>) {
     return (
         <>
-            <head>
-                <style>{`body { background-color: #121212; color: #ccc; }`}</style>
-            </head>
+            {/* React hoists this into the document <head>; a <head> element here would be nested inside <body> */}
+            <style href="site-body" precedence="default">{`body { background-color: #121212; color: #ccc; }`}</style>
             <ParticleContainer />
             <div className="z-10 text-left px-6">
                 <Header />
