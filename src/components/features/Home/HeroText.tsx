@@ -1,4 +1,5 @@
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
+import { contactEmail } from "@/assets/site";
 
 const HeroText: React.FC = () => {
     return (
@@ -22,7 +23,7 @@ const HeroText: React.FC = () => {
             <GreenLink href="https://bsky.app/profile/negativeentropy.me" target="_blank" rel="noopener noreferrer">
                 Bluesky
             </GreenLink>
-            , or reach me at <GreenLink href="mailto:a.kotsampaseris@gmail.com">a.kotsampaseris@gmail.com</GreenLink>.
+            , or reach me at <GreenLink href={`mailto:${contactEmail}`}>{contactEmail}</GreenLink>.
         </p>
     );
 };
