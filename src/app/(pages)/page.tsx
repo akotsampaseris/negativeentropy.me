@@ -1,4 +1,5 @@
 import LatestBlogPosts from "@/components/features/Blog/LatestBlogPost";
+import ContactCta from "@/components/features/ContactCta/ContactCta";
 import Currently from "@/components/features/Currently/Currently";
 import { PostType } from "@/types/posts";
 import HeroText from "@/components/features/Home/HeroText";
@@ -33,6 +34,8 @@ export default async function HomePage() {
                 <h1 className="py-2 font-bold tracking-tight text-white">Antony Kotsampaseris</h1>
                 <HeroText />
             </div>
+            {/* Contact */}
+            <ContactCta className="max-w-xl" />
             {/* Currently */}
             {currentlyItems.length > 0 && <Currently items={currentlyItems} />}
             {/* Latest Posts */}

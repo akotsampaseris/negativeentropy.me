@@ -33,19 +33,19 @@ const PROJECTS: Project[] = [
         id: "volunteering-website",
         title: "Animal Volunteering Website (eeach.gr)",
         description:
-            "A full-stack platform for an animal volunteering organisation. Features adoption listings, foster and volunteer application forms, and a success stories showcase. Designed to reduce friction between animals in need and the people who can help them.",
+            "The website of the Volunteer Association for Stray Animals of Chalkida, which I co-founded. I designed and built it on my own: adoption listings, foster and volunteer sign-up, donations, blog and newsletter. The point is to reduce friction between animals in need and the people who can help them.",
         stack: ["Next.js", "Typescript", "Sanity.io", "Tailwind"],
         status: "completed",
         category: "software",
-        links: { live: "https://www.eeach.gr" },
+        links: { live: "https://eeach.gr" },
         year: 2026,
     },
     {
         id: "openadopt",
         title: "OpenAdopt",
         description:
-            "A federated platform for animal rights organisations, inspired by Mastodon's decentralised model. Supports adoption listings, foster and volunteer applications, and success stories — designed so any shelter or rescue group can run their own instance while remaining part of a wider network.",
-        stack: ["FastAPI", "React", "TypeScript"],
+            "An open-source, self-hosted adoption platform for animal shelters and rescue groups. Supports adoption listings, foster and volunteer applications, and success stories, so any shelter or rescue group can run its own instance.",
+        stack: ["FastAPI", "PostgreSQL", "React", "TypeScript"],
         status: "in-progress",
         category: "open-source",
         links: { github: "https://github.com/akotsampaseris/openadopt" },
@@ -151,23 +151,22 @@ const prefersReducedMotion = () => typeof window !== "undefined" && window.match
 
 // Types out `text` once when `animate` is true; otherwise shows it immediately.
 function useTypewriter(text: string, animate: boolean, speed: number = 14) {
-    const [displayed, setDisplayed] = useState(animate ? "" : text);
+    const [typed, setTyped] = useState("");
 
     useEffect(() => {
-        if (!animate) {
-            setDisplayed(text);
-            return;
-        }
-        setDisplayed("");
+        if (!animate) return;
+        setTyped("");
         let i = 0;
         const interval = setInterval(() => {
             i++;
-            setDisplayed(text.slice(0, i));
+            setTyped(text.slice(0, i));
             if (i >= text.length) clearInterval(interval);
         }, speed);
         return () => clearInterval(interval);
     }, [text, animate, speed]);
 
+    // Without animation the full text shows on the same render, so entries never flicker hidden when switching tabs
+    const displayed = animate ? typed : text;
     return { displayed, done: displayed === text };
 }
 
@@ -236,18 +235,21 @@ const ProjectLinks = ({ links }: { links: Project["links"] }) => {
     );
 };
 
-const ProjectEntry = ({ project, index, animate }: { project: Project; index: number; animate: boolean }) => {
+// Entries are always rendered, so project names are in the server HTML for crawlers and link previews.
+// The intro only hides them visually until the command is typed (`revealed`), then fades them in staggered.
+const ProjectEntry = ({ project, index, revealed, animate }: { project: Project; index: number; revealed: boolean; animate: boolean }) => {
     const [expanded, setExpanded] = useState(false);
-    const [visible, setVisible] = useState(!animate);
+    const [staggered, setStaggered] = useState(false);
+    const visible = revealed && (!animate || staggered);
     const status = STATUS_SYMBOL[project.status];
     const detailsId = `${project.id}-details`;
     const meta = [project.year, project.category as string, project.publication?.journal ?? status.label];
 
     useEffect(() => {
-        if (!animate) return;
-        const timeout = setTimeout(() => setVisible(true), index * 60);
+        if (!revealed || !animate) return;
+        const timeout = setTimeout(() => setStaggered(true), index * 60);
         return () => clearTimeout(timeout);
-    }, [animate, index]);
+    }, [revealed, animate, index]);
 
     return (
         <article
@@ -256,6 +258,8 @@ const ProjectEntry = ({ project, index, animate }: { project: Project; index: nu
                 borderColor: COLORS.borderFaint,
                 opacity: visible ? 1 : 0,
                 transform: visible ? "none" : "translateX(-6px)",
+                // Hidden entries stay out of the tab order and the accessibility tree
+                visibility: visible ? "visible" : "hidden",
             }}
         >
             <button onClick={() => setExpanded(!expanded)} aria-expanded={expanded} aria-controls={detailsId} className="w-full text-left space-y-1.5 cursor-pointer">
@@ -403,14 +407,14 @@ export default function Projects() {
                         {!done && <span className="inline-block w-2 h-4 ml-0.5 align-middle animate-pulse" style={{ backgroundColor: COLORS.accent }} />}
                     </Prompt>
 
+                    <div className="pt-2">
+                        {filtered.map((project, i) => (
+                            <ProjectEntry key={project.id} project={project} index={i} revealed={done} animate={animateIntro} />
+                        ))}
+                    </div>
+
                     {done && (
                         <>
-                            <div className="pt-2">
-                                {filtered.map((project, i) => (
-                                    <ProjectEntry key={project.id} project={project} index={i} animate={animateIntro} />
-                                ))}
-                            </div>
-
                             <div className="pt-3 text-xs font-mono" style={{ color: COLORS.text }}>
                                 {filtered.length} result{filtered.length !== 1 ? "s" : ""}
                             </div>

@@ -2,6 +2,7 @@ import { HiCalendar, HiLocationMarker } from "react-icons/hi";
 import { Metadata } from "next";
 import { GreenLink } from "@/components/ui/GreenLink/GreenLink";
 import { FrequentlyAskedQuestions } from "@/components/features/FrequentlyAskedQuestions/FrequentlyAskedQuestions";
+import ContactCta from "@/components/features/ContactCta/ContactCta";
 
 export async function generateMetadata(): Promise<Metadata> {
     const title = "About";
@@ -42,7 +43,6 @@ export async function generateMetadata(): Promise<Metadata> {
 const timelineItems = [
     {
         title: "Being Born",
-        date: "December 1992",
         location: "Nea Artaki, Greece",
         content: (
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
@@ -89,8 +89,12 @@ const timelineItems = [
         location: "Manchester, UK",
         content: (
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
-                Moving abroad to study physics felt like a big decision at the
-                time — and to be fair, it was. Between learning how to make tea
+                Moving abroad to study physics at the{" "}
+                <strong className="text-gray-100 font-semibold">
+                    University of Salford
+                </strong>{" "}
+                felt like a big decision at the time — and to be fair, it
+                was. Between learning how to make tea
                 properly and deciphering{" "}
                 <strong className="text-gray-100 font-semibold">
                     quantum mechanics
@@ -101,7 +105,11 @@ const timelineItems = [
                     professional research
                 </strong>{" "}
                 with two of my professors, which probably says more about how
-                obsessed I was than how prepared I felt.
+                obsessed I was than how prepared I felt. I graduated with{" "}
+                <strong className="text-gray-100 font-semibold">
+                    First Class Honours
+                </strong>
+                .
             </p>
         ),
     },
@@ -118,7 +126,7 @@ const timelineItems = [
                 </strong>{" "}
                 at the{" "}
                 <strong className="text-gray-100 font-semibold">
-                    University of Durham
+                    Durham University
                 </strong>{" "}
                 — though it didn&apos;t start out that way. I was easily the
                 least prepared student in the room, constantly trying to catch
@@ -135,39 +143,91 @@ const timelineItems = [
                     string theory
                 </strong>
                 . My thesis was on the{" "}
+                <strong className="text-gray-100 font-semibold">
+                    AdS/CFT correspondence and holographic entanglement entropy
+                </strong>
+                , which was as fascinating as it was mind-bending (if
+                you&apos;re curious, here&apos;s some{" "}
                 <GreenLink
                     href="https://iopscience.iop.org/article/10.1088/1751-8113/42/50/504008/pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    AdS/CFT correspondence and holographic entanglement entropy
+                    background reading for my MSc thesis
                 </GreenLink>
-                , which was as fascinating as it was mind-bending. I finished at
-                the top of the class and picked up an award — it was the hardest
-                I&apos;d ever worked, and the most alive I&apos;d ever felt.
+                ). I finished first in my cohort with a{" "}
+                <strong className="text-gray-100 font-semibold">
+                    Distinction
+                </strong>{" "}
+                and picked up the{" "}
+                <strong className="text-gray-100 font-semibold">
+                    Winton Prize in Mathematics &amp; Physics
+                </strong>{" "}
+                — it was the hardest I&apos;d ever worked, and the most alive
+                I&apos;d ever felt.
             </p>
         ),
     },
     {
-        title: "Life-changing decision #2: Return to Greece and become a full-time programmer",
-        date: "September 2019",
-        location: "Athens, Greece",
+        title: "Life-changing decision #2: Write software for a living",
+        date: "October 2017",
+        location: "Chalkis, Greece",
         content: (
             <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
-                After my master&apos;s, I started a{" "}
+                Right after my master&apos;s, I started working full-time as a{" "}
+                <strong className="text-gray-100 font-semibold">
+                    full-stack software engineer
+                </strong>{" "}
+                at{" "}
+                <strong className="text-gray-100 font-semibold">
+                    TechnoLogic
+                </strong>
+                , building web applications for clients across all kinds of
+                industries and looking after the servers they ran on. It turned
+                out that the habit of going deep on a problem works just as
+                well on code as it does on equations.
+            </p>
+        ),
+    },
+    {
+        title: "One more round of physics",
+        date: "September 2018",
+        location: "Birmingham, UK",
+        content: (
+            <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
+                Physics wasn&apos;t done with me yet. I started a{" "}
                 <strong className="text-gray-100 font-semibold">
                     PhD in Quantum Plasmonics
                 </strong>{" "}
                 at the{" "}
                 <strong className="text-gray-100 font-semibold">
                     University of Birmingham
-                </strong>{" "}
-                and made it through the first year. But somewhere along the way,
-                I realized my heart wasn&apos;t in it. I still loved physics,
-                but academia no longer felt like the right path. At the same
-                time, I was already working as a developer on the side, and that
-                work felt sharp, fast, and full of possibility. So I made the
-                switch, moved back to Greece, and went all in.
+                </strong>
+                , while continuing to work remotely for TechnoLogic. I also
+                worked as a{" "}
+                <strong className="text-gray-100 font-semibold">
+                    graduate teaching assistant
+                </strong>
+                , first helping first-year students through their lab
+                experiments and then tutoring second-year{" "}
+                <strong className="text-gray-100 font-semibold">
+                    Statistical Physics
+                </strong>
+                .
+            </p>
+        ),
+    },
+    {
+        title: "Life-changing decision #3: Leave academia and go all in on software",
+        date: "September 2019",
+        location: "Athens, Greece",
+        content: (
+            <p className="text-sm leading-relaxed text-gray-400 max-w-xl">
+                I made it through the first year of the PhD. But somewhere along
+                the way, I realized my heart wasn&apos;t in it. I still loved
+                physics, but academia no longer felt like the right path, while
+                the software work felt sharp, fast, and full of possibility. So
+                I left the PhD, moved back to Greece, and went all in.
             </p>
         ),
     },
@@ -181,7 +241,7 @@ const timelineItems = [
                 uncertainty and routine. For me, they were defined by nonstop
                 work — long hours, new challenges, and the kind of tunnel vision
                 that comes with building things under pressure. I&apos;ve now
-                been working professionally as a developer for about eight
+                been working professionally as a developer for more than eight
                 years, and while I&apos;ve learned a lot, I&apos;ve also been
                 thinking more seriously about what comes next.
             </p>
@@ -199,8 +259,8 @@ const timelineItems = [
                 there, an elderly English Setter rescued from the wilderness,
                 and I help run the animal volunteering group I co-founded.
                 Work-wise, I&apos;m splitting my time between two very different
-                problems. At Anzen, I&apos;m building edge AI that makes construction
-                sites safer. On the side, I&apos;m researching the foundations of
+                problems. At Anzen, I&apos;m building the software platform behind
+                safer construction sites. On the side, I&apos;m researching the foundations of
                 quantum mechanics, and whether entanglement could come from
                 something deeper and deterministic.
             </p>
@@ -288,13 +348,15 @@ export default function AboutPage() {
 
                                     {/* Meta */}
                                     <div className="flex flex-wrap items-center gap-3">
-                                        <div
-                                            className="flex items-center gap-1.5 text-xs font-mono"
-                                            style={{ color: "#4ade8066" }}
-                                        >
-                                            <HiCalendar className="text-xs" />
-                                            {item.date}
-                                        </div>
+                                        {item.date && (
+                                            <div
+                                                className="flex items-center gap-1.5 text-xs font-mono"
+                                                style={{ color: "#4ade8066" }}
+                                            >
+                                                <HiCalendar className="text-xs" />
+                                                {item.date}
+                                            </div>
+                                        )}
                                         <div
                                             className="flex items-center gap-1.5 text-xs font-mono"
                                             style={{ color: "#4ade8066" }}
@@ -339,6 +401,9 @@ export default function AboutPage() {
                 </div>
                 <FrequentlyAskedQuestions />
             </div>
+
+            {/* Contact */}
+            <ContactCta />
         </div>
     );
 }
